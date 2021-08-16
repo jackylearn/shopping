@@ -1,11 +1,10 @@
 const app = require('../server.js')
-const request = require('supertest')
+const api = require('supertest')(app)
 
 describe('/', () => {
 
     it('works', (done) => {
-        request(app)
-            .get('/')
+        api.get('/')
             .expect(res => res.statusCode === 200)
             .expect(res => res.text === 'hi')
             .end((err, res) => {
@@ -18,8 +17,7 @@ describe('/', () => {
 
 xdescribe('/auth/google', () => {
     it('works', (done) => {
-        request(app)
-            .get('/auth/google')
+        api.get('/auth/google')
             .expect(200, done)
     })
 })
