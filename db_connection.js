@@ -1,10 +1,12 @@
 require('dotenv').config();
 const mongoose = require('mongoose')
+mongoose.set('useFindAndModify', false);
 
-
-function connectDatabase() {
+async function connectDatabase() {
     const URI = process.env.MONGODB_URI
-    return mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: false });
+    await mongoose.connect(URI, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true });
+
+    return Promise.resolve(mongoose.connection.client)
 }
 
 exports.connect = connectDatabase;

@@ -4,7 +4,7 @@
   "description": "backend shopping cart project",
   "main": "server.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --collect-coverage --forceExit --detectOpenHandles ",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --coverage --forceExit ",
     "dev": "nodemon server.js"
   },
   "repository": {
