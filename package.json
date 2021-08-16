@@ -1,0 +1,48 @@
+{
+  "name": "shoppingcart",
+  "version": "1.0.0",
+  "description": "backend shopping cart project",
+  "main": "server.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --collect-coverage --forceExit --detectOpenHandles",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackylearn/shopping.git"
+  },
+  "keywords": [
+    "passport",
+    "react",
+    "payment",
+    "shopping",
+    "cart"
+  ],
+  "author": "Jacky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jackylearn/shopping/issues"
+  },
+  "homepage": "https://github.com/jackylearn/shopping#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "line-pay-sdk": "^1.0.3",
+    "mongodb": "^4.1.0",
+    "mongoose": "^5.13.7",
+    "passport": "^0.4.1",
+    "passport-google-oauth2": "^0.2.0",
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.5"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
