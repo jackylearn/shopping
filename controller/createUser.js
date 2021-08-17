@@ -15,7 +15,7 @@ module.exports = async function createUser(name, password) {
         })
 
         await newUser.save()
-        return { userId: newUser._id }
+        return newUser
 
     } catch (err) {
         throw err
