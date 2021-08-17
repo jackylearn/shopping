@@ -1,5 +1,8 @@
 const app = require('../server.js')
 const api = require('supertest')(app)
+const db = require('../db_connection.js')
+
+afterAll(async () => await db.disconnect())
 
 describe('/', () => {
 
