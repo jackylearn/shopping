@@ -13,7 +13,7 @@ app.use(express.static(process.cwd() + '/client'))
 
 db.connect()
     .then((client) => {
-        const database = client.db('bookRental').collection('users')
+        const database = client.db('bookRental')
         routes(app, database)
         auth(app, database)
     })
