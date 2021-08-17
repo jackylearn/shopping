@@ -10,4 +10,9 @@ function connectDatabase() {
     return Promise.resolve(mongoose.connection.client)
 }
 
+function disconnect() {
+    mongoose.connection.close()
+}
+
 exports.connect = connectDatabase;
+exports.disconnect = disconnect;

@@ -4,7 +4,7 @@
   "description": "backend shopping cart project",
   "main": "server.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --coverage --forceExit ",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --collect-coverage --forceExit ",
     "dev": "nodemon server.js"
   },
   "repository": {
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/jackylearn/shopping#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "line-pay-sdk": "^1.0.3",
     "mongodb": "^4.1.0",
@@ -34,9 +35,9 @@
     "react": "^17.0.2"
   },
   "devDependencies": {
-    "@shelf/jest-mongodb": "^2.0.1",
     "cross-env": "^7.0.3",
     "jest": "^27.0.6",
+    "mongodb-memory-server": "^7.3.6",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.5"
   },
