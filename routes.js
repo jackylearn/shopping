@@ -4,18 +4,20 @@ const createUser = require('./controller/createUser.js')
 module.exports = (app) => {
 
     app.route('/')
-        .get((req, res) => {
-            console.log('hi3')
+        .get(async (req, res) => {
+            const msg = await req.consumeFlash('success')
+            console.log(msg)
+
             res.sendFile(process.cwd() + '/public/index.html')
         })
 
-    // app.route('/login')
-    //     .post(passport.authenticate('local', {
-    //         successFlash: 'Welcome!',
-    //         successRedirect: '/',
-    //         failureFlash: 'Invalid username or password.',
-    //         failureRedirect: '/'
-    //     }))
+    app.route('/login')
+        .post(passport.authenticate('local', {
+            successFlash: 'Welcome!',
+            successRedirect: '/',
+            failureFlash: 'Invalid username or password.',
+            failureRedirect: '/'
+        }))
 
     app.route('/register')
         .post(async (req, res, next) => {
@@ -23,7 +25,7 @@ module.exports = (app) => {
                 const newUser = await createUser(req.body.name, req.body.password)
                 next(null, newUser)
             } catch (err) {
-                req.flash('duplicate username')
+                req.flash('error', 'duplicate username')
                 console.log('duplicate username')
                 res.redirect('/')
             }
@@ -35,9 +37,14 @@ module.exports = (app) => {
             failureRedirect: '/fail'
         }))
     app.route('/fail')
-        .get((req, res) => res.sendFile(process.cwd() + '/public/fail.html'))
+        .get(async (req, res) => {
+            console.log(req.session)
+            const msg2 = await req.consumeFlash('error')
+            console.log(msg2)
+            res.sendFile(process.cwd() + '/public/fail.html')
+        })
 
-    // app.route('/auth/goo gle')
+    // app.route('/auth/google')
     //     .get(passport.authenticate('google', { scope: ['profile'] }))
 
     // app.route('/auth/google/callback')
