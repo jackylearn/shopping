@@ -4,22 +4,35 @@ const app = express();
 
 const routes = require('./routes.js')
 const auth = require('./auth.js')
-const db = require('./db_connection.js')
-// const userSchema = require('./user_schema.js')
+const passport = require('passport')
+const session = require('express-session')
+const flash = require('connect-flash')
 
+const db = require('./db_connection.js')
 app.use(express.json()) // for other data fetch route
 app.use(express.urlencoded({ extended: false })) // for form from post request
-app.use(express.static(process.cwd() + '/client'))
+app.use(express.static(process.cwd() + '/public'));
+app.use(flash())
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 db.connect()
     .then((client) => {
         const database = client.db('bookRental')
-        routes(app, database)
-        auth(app, database)
+        auth(database)
+        routes(app)
     })
     .catch(err => {
         app.get('/', (req, res) => {
-            res.send(err)
+            console.log(err.message)
+            res.send('Database connection error')
         })
     })
 
