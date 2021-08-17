@@ -14,9 +14,9 @@ afterAll(async () => await memoryServer.disconnect())
 
 describe('create', () => {
     it('first user', async () => {
-        const { userId } = await createUser("jacky", '12ert3')
+        const { _id } = await createUser("jacky", '12ert3')
 
-        const user = await Users.findById(userId).exec()
+        const user = await Users.findById(_id).exec()
         const validPassword = await bcrypt.compareSync('12ert3', user.password)
         expect(user.name).toBe('jacky')
         expect(validPassword).toBe(true)
