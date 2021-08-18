@@ -1,3 +1,4 @@
+const path = require('path')
 const passport = require('passport')
 const createUser = require('./controller/createUser.js')
 
@@ -7,7 +8,8 @@ module.exports = (app) => {
         .get(async (req, res) => {
             const msg = await req.consumeFlash('success')
             console.log(msg)
-            res.sendFile(process.cwd() + '/public/index.html')
+            // res.sendFile(process.cwd() + '/public/index.html')
+            res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'))
         })
 
     app.route('/login')

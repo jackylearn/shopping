@@ -25,26 +25,22 @@
   },
   "homepage": "https://github.com/jackylearn/shopping#readme",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-react-app": "^3.1.2",
     "bcrypt": "^5.0.1",
     "connect-flash": "^0.1.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-flash-message": "^2.1.0",
     "express-session": "^1.17.2",
+    "jest": "^26.6.0",
     "line-pay-sdk": "^1.0.3",
     "mongodb": "^4.1.0",
     "mongoose": "^5.13.7",
     "passport": "^0.4.1",
     "passport-google-oauth2": "^0.2.0",
-    "passport-local": "^1.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "jest": "^27.0.6",
     "mongodb-memory-server": "^7.3.6",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.5"

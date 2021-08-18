@@ -5,7 +5,7 @@ const createUser = require('../controller/createUser')
 const bcrypt = require('bcrypt')
 
 // memoryServer
-const memoryServer = require('../memoryServer.js')
+const memoryServer = require('../utility/memoryServer.js')
 
 beforeAll(async () => await memoryServer.connect())
 afterEach(async () => await memoryServer.clearDatabase())

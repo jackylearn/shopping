@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const app = express();
+const path = require('path');
 
 const routes = require('./routes.js')
 const auth = require('./auth.js')
@@ -11,7 +12,7 @@ const { flash } = require('express-flash-message')
 const db = require('./db_connection.js')
 app.use(express.json()) // for other data fetch route
 app.use(express.urlencoded({ extended: false })) // for form from post request
-// app.use(express.static(process.cwd() + '/public'));
+app.use(express.static(path.resolve(__dirname, '../client/public')));
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
