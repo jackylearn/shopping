@@ -3,6 +3,12 @@ const createUser = require('./controller/createUser.js')
 
 module.exports = (app) => {
 
+    app.use((req, res, next) => {
+
+        console.log(req.ip + ':' + req.method + req.url)
+        console.log(req.session)
+        next()
+    })
     app.route('/')
         .get(async (req, res) => {
             const msg = await req.consumeFlash('success')
@@ -29,16 +35,22 @@ module.exports = (app) => {
                 console.log('duplicate username')
                 res.redirect('/')
             }
+        },
+            passport.authenticate('local',
+                {
+                    successFlash: 'Welcome!',
+                    successRedirect: '/',
+                    failureFlash: 'Invalid username or password.',
+                    failureRedirect: '/fail'
+                }
+            )
+        )
 
-        }, passport.authenticate('local', {
-            successFlash: 'Welcome!',
-            successRedirect: '/',
-            failureFlash: 'Invalid username or password.',
-            failureRedirect: '/fail'
-        }))
+    app.post('/auth', passport.authenticate('local'), function (req, res) {
+        console.log("passport user", req.user);
+    });
     app.route('/fail')
         .get(async (req, res) => {
-            console.log(req.session)
             const msg2 = await req.consumeFlash('error')
             console.log(msg2)
             res.sendFile(process.cwd() + '/public/fail.html')

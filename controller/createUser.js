@@ -15,6 +15,7 @@ module.exports = async function createUser(name, password) {
         })
 
         await newUser.save()
+        console.log(newUser)
         return newUser
 
     } catch (err) {

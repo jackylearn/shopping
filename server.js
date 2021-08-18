@@ -17,17 +17,16 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: false,
-    cookie: { maxAge: 60 * 10 },
+    cookie: { maxAge: 60 * 10 * 1000 },
 }))
-app.use(flash({ sessionKeyName: 'flashMessage' }))
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash())
 
 
 db.connect()
-    .then((client) => {
-        const database = client.db('bookRental')
-        auth(app, database)
+    .then(() => {
+        auth()
         routes(app)
     })
     .catch(err => {
