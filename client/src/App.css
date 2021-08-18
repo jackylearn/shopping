@@ -1,5 +1,5 @@
 :root{
-  --btn-color: ##e96;
+  --btn-color: #e96;
   --background-color: #aec;
   --modal-color:white;
 }
@@ -72,8 +72,8 @@ form{
   width: 95%;
 }
 
-.modal-btn :hover{
-  border: 3px solid blue
+.btn:hover{
+  opacity: 0.8;
 }
 
 .hidden{
