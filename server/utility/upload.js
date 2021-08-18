@@ -1,6 +1,6 @@
 const fs = require('fs').promises;
-const db = require('./db_connection.js')
-const { Books } = require('./model/book.js')
+const db = require('..db_connection')
+const { Books } = require('../model/book.js')
 const dir = "./assets/books"
 
 

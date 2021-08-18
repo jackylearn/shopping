@@ -2,7 +2,7 @@ const app = require('../server.js')
 const api = require('supertest')(app)
 
 // memoryServer
-const memoryServer = require('../memoryServer.js')
+const memoryServer = require('../utility/memoryServer.js')
 
 // beforeAll(async () => await memoryServer.connect())
 afterEach(async () => await memoryServer.clearDatabase())

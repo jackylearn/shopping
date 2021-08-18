@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --collect-coverage --forceExit ",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/jackylearn/shopping#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
     "bcrypt": "^5.0.1",
     "connect-flash": "^0.1.1",
     "dotenv": "^10.0.0",
@@ -37,7 +39,8 @@
     "passport": "^0.4.1",
     "passport-google-oauth2": "^0.2.0",
     "passport-local": "^1.0.0",
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
