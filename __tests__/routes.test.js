@@ -1,10 +1,14 @@
 const app = require('../server.js')
 const api = require('supertest')(app)
-const db = require('../db_connection.js')
 
-afterAll(async () => await db.disconnect())
+// memoryServer
+const memoryServer = require('../memoryServer.js')
 
-describe('/', () => {
+// beforeAll(async () => await memoryServer.connect())
+afterEach(async () => await memoryServer.clearDatabase())
+// afterAll(async () => await memoryServer.disconnect())
+
+describe('GET /', () => {
 
     it('works', (done) => {
         api.get('/')
@@ -16,6 +20,18 @@ describe('/', () => {
             })
     })
 
+})
+
+describe('POST /register', () => {
+    it('register new user', (done) => {
+        api.post('/register')
+            .send({ name: 'kk', password: 'ggg' })
+            .expect(res => res.statusCode === 200)
+            .end((err, res) => {
+                if (err) return done(err)
+                return done()
+            })
+    })
 })
 
 xdescribe('/auth/google', () => {
