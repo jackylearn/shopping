@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --collect-coverage --forceExit ",
-    "dev": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "concurrently": "^6.2.1",
     "cross-env": "^7.0.3",
     "mongodb-memory-server": "^7.3.6",
     "nodemon": "^2.0.12",
