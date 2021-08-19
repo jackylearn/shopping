@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     created_on: {
         type: Date,
         default: new Date()
-    }
+    },
+    follow: [String]
 })
 
 module.exports = mongoose.model('user', userSchema)
