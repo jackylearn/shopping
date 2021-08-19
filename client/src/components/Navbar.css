@@ -1,0 +1,86 @@
+
+nav {
+    margin:0 auto;
+    padding: 0.5em;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 2px 3px #333;
+    background-color: var(--nav-color);
+  }
+  
+  nav > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  
+  nav > div >span {
+    padding: 0.5em 2em;
+    margin: 0 1em;
+    cursor: pointer;
+  }
+  
+  nav > div > span:hover{
+    box-shadow: 0 0 5px #777;
+    opacity: 0.7;
+  }
+  
+  
+  #logo {
+   font-size: 20px;
+  }
+
+  
+#cart-container {
+    background-color: #bbb;
+    height: 2em;
+    border-radius: 15px;
+    width: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 2em;
+}
+  
+#cart-container:hover {
+    opacity: 0.7;
+}
+  
+#cart-count {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    text-align: center;
+}
+
+
+footer {
+  position: absolute;
+  right:0;
+  left:0;
+  bottom:0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 10px; 
+  user-select: none;
+  box-shadow: 0 -2px 3px #333;
+  background-color: var(--nav-color);
+  padding: 0.5em;
+}
+
+footer > p {
+  padding: 0 30px;
+}
+footer > a,
+footer > a:visited {
+  color: var(--link-color);
+}

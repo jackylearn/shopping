@@ -1,11 +1,19 @@
 import './App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState, useEffect } from 'react'
+import Navbar from './components/Navbar.js'
+import Modal from './components/Modal.js'
+import CartPreview from './components/CartPreview.js'
 
-const { useEffect, useState } = require('react')
+import CartScreen from './screens/CartScreen.js'
+import HomeScreen from './screens/HomeScreen.js'
+import BooksScreen from './screens/BookScreen.js'
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
-  const [registerModalShown, setRegister] = useState(false)
-  const [loginModalShown, setLogin] = useState(false)
+  const [isRegisterModalShown, setRegister] = useState(false)
+  const [isLoginModalShown, setLogin] = useState(false)
+  const [isCartPreviewShown, setCartPreview] = useState(false)
 
 
   const handleFormSwitch = (event) => {
@@ -23,87 +31,63 @@ function App() {
     setLogin(false)
   }
 
-  const closeModal = () => {
+  const closeAll = () => {
     setRegister(false)
     setLogin(false)
+    setCartPreview(false)
+  }
+
+  const showCartPreview = () => {
+    setCartPreview(prev => !prev)
   }
 
   return (
-    <div className="app">
-      <Navbar loginButton={loginButtonPressed} registerButton={registerButtonPressed} />
-      <Modal
-        name="Register"
-        route="/auth/register"
-        message="Already has an account?"
-        link="login"
-        handleFormSwitch={handleFormSwitch}
-        status={registerModalShown}
-      />
-      <Modal
-        name="Login"
-        route="/auth/login"
-        message="Do not have an account?"
-        link="register"
-        handleFormSwitch={handleFormSwitch}
-        status={loginModalShown}
-      />
-      <div
-        id="overlay"
-        className={loginModalShown || registerModalShown ? "active" : ""}
-        onClick={closeModal}
-      ></div>
-    </div>
+    <Router >
+
+      <div className="app">
+        {/* for website */}
+        <Navbar
+          loginButton={loginButtonPressed}
+          registerButton={registerButtonPressed}
+          showCartScreen={showCartPreview}
+        />
+
+        <Modal
+          name="Register"
+          route="/auth/register"
+          message="Already has an account?"
+          link="login"
+          handleFormSwitch={handleFormSwitch}
+          status={isRegisterModalShown}
+        />
+        <Modal
+          name="Login"
+          route="/auth/login"
+          message="Do not have an account?"
+          link="register"
+          handleFormSwitch={handleFormSwitch}
+          status={isLoginModalShown}
+        />
+        <main>
+          <Switch>
+            <Route exact path="/" component={HomeScreen} />
+            <Route exact path="/book/:id" component={BooksScreen} />
+            <Route exact path="/cart" component={CartScreen} />
+          </Switch>
+
+        </main>
+        <CartPreview
+          status={isCartPreviewShown}
+        />
+        <div
+          id="overlay"
+          className={isLoginModalShown || isRegisterModalShown || isCartPreviewShown ? "active" : ""}
+          onClick={closeAll}
+        ></div>
+      </div>
+    </Router>
   );
 }
-
-function Modal(props) {
-  const modalClass = props.status ? "modal active" : "modal";
-  const [passwordVisibility, setPwdVisibility] = useState(false)
-  const viewPassword = () => {
-    setPwdVisibility(prev => !prev)
-  }
-
-  return (
-    <div id={props.name.toLowerCase()} className={modalClass} >
-      <h2 className="modal-title">{props.name}</h2>
-      <form action={props.route} method='post'>
-        <div className="form-content">
-          <label htmlFor="name">Username</label>
-          <input type="text" name='name' autoComplete="off" placeholder='username' required />
-        </div>
-        <div className="form-content">
-          <label htmlFor="password">Password</label>
-          <input type={passwordVisibility ? 'password' : 'text'} name='password' placeholder='password' required />
-          <div className="visibility">
-
-            <FontAwesomeIcon icon={passwordVisibility ? ['fas', 'eye'] : ['fas', 'eye-slash']} onClick={viewPassword} />
-          </div>
-        </div>
-        <div className="btn-wrapper">
-          <button type="submit" className="btn modal-btn">{props.name}</button>
-
-        </div>
-      </form>
-      <p>{props.message}  <a href='#' onClick={props.handleFormSwitch}>{props.link}</a></p>
-    </div>
-
-  )
-}
-
-function Navbar(props) {
-  return (
-    <nav id="navbar">
-      <div id="logo">BookRental</div>
-      <div>
-
-        <span onClick={props.loginButton}>Login</span>
-        <span onClick={props.registerButton}>Register</span>
-        <span><FontAwesomeIcon icon={["fas", "shopping-cart"]} /> Shopping Cart</span>
-      </div>
-    </nav>
-  )
-}
-
 
 
 export default App;
