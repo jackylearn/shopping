@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@1,700&display=swap');
+
 :root{
   --btn-color: #e96;
-  --background-color: #aec;
+  --background-color: #bdf;
   --modal-color:white;
 }
 
 * {
-  font-family:'Courier New', Courier, monospace;
+  /* font-family:'Courier New', Courier, monospace; */
+  font-family: 'Alegreya Sans SC', sans-serif;
 }
 
 body {
@@ -29,21 +32,36 @@ body {
   position: fixed;
   top: 50%;
   left:50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scaleY(0);
+  opacity: 0;
+  transition: 200ms ease-in-out;
   z-index:10;
   background-color: var(--modal-color);
   border-radius: 16px;
   box-shadow: 2px 2px 5px #777;
 }
 
+.modal.active {
+  transform: translate(-50%, -50%) scaleY(1);
+  opacity: 1;
+}
+
 #overlay {
   background-color: #aaa;
-  opacity: 0.4;
+  opacity: 0;
   position:fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  transition: 200ms ease-in-out;
+  z-index:-1;
+}
+
+#overlay.active {
+  opacity: 0.4;
+  z-index:9;
+
 }
 
 form{
@@ -76,6 +94,61 @@ form{
   opacity: 0.8;
 }
 
-.hidden{
-  display: none;
+
+nav {
+  margin:0 auto;
+  position: fixed;
+  right: 20%;
+  left: 20%;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  box-shadow: 0 2px 3px #333;
+}
+
+nav > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+nav > div >span {
+  padding: 0.5em 2em;
+  margin: 0 1em;
+  cursor: pointer;
+}
+
+nav > div > span:hover{
+  box-shadow: 0 0 5px #777;
+  opacity: 0.7;
+}
+
+#logo {
+ padding: 0.5em
+}
+@media screen and (max-width:600px){
+  
+}
+
+footer {
+  position: absolute;
+  right: 20%;
+  left: 20%;
+  bottom:0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px; 
+  user-select: none;
+  box-shadow: 0 2px 3px #333;
+
+}
+
+footer > p {
+  padding: 0 30px;
+}
+footer > a,
+footer > a:visited {
+  color: #46e;
 }
