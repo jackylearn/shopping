@@ -42,6 +42,11 @@ router.get('/fail', async (req, res) => {
     res.sendFile(process.cwd() + '../client/public/fail.html')
 })
 
+router.get('/logout', (req, res) => {
+    req.logout()
+    res.redirect('/')
+})
+
 // router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
 
 // router.get('/auth/google/callback',
