@@ -9,10 +9,12 @@ const passport = require('passport')
 const session = require('express-session')
 const { flash } = require('express-flash-message')
 
-const db = require('./db_connection.js')
+const db = require('./config/db_connection.js')
 app.use(express.json()) // for other data fetch route
 app.use(express.urlencoded({ extended: false })) // for form from post request
-app.use(express.static(path.resolve(__dirname, '../client/public')));
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -37,6 +39,6 @@ db.connect()
         })
     })
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => console.log('listening on port ' + PORT))
 module.exports = app
