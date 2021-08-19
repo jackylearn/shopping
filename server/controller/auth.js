@@ -3,7 +3,6 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt')
 
-const ObjectID = require('mongodb').ObjectID;
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 const Users = require('../model/user.js')

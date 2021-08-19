@@ -33,7 +33,7 @@ function App() {
       <Navbar loginButton={loginButtonPressed} registerButton={registerButtonPressed} />
       <Modal
         name="Register"
-        route="/register"
+        route="/auth/register"
         message="Already has an account?"
         link="login"
         handleFormSwitch={handleFormSwitch}
@@ -41,7 +41,7 @@ function App() {
       />
       <Modal
         name="Login"
-        route="/login"
+        route="/auth/login"
         message="Do not have an account?"
         link="register"
         handleFormSwitch={handleFormSwitch}

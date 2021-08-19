@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 const bookRoutes = require('./routes/bookRoutes.js');
 
-const routes = require('./routes/routes.js')
+const authRoutes = require('./routes/authRoutes.js')
 const auth = require('./controller/auth.js')
 const passport = require('passport')
 const session = require('express-session')
@@ -27,12 +27,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash())
 
+auth()
 
 db.connect()
     .then(() => {
         app.use("/api/books", bookRoutes)
-        auth()
-        routes(app)
+        app.use("/auth", authRoutes)
+
+        app.use((req, res) => {
+            res.status(404)
+                .send('Not Found')
+        })
     })
     .catch(err => {
         app.get('/', (req, res) => {
