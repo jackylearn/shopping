@@ -3,6 +3,17 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// fontawesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+// icon for famous company e.g. apple, facebook, google
+// import { fab } from '@fortawesome/free-brands-svg-icons'
+// other icons will be used 
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faShoppingCart)
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

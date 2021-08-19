@@ -90,7 +90,7 @@ function Navbar(props) {
 
         <span onClick={props.loginButton}>Login</span>
         <span onClick={props.registerButton}>Register</span>
-        <span><FontAwesomeIcon icon={["fas", "coffee"]} />Shopping Cart</span>
+        <span><FontAwesomeIcon icon={["fas", "shopping-cart"]} /> Shopping Cart</span>
       </div>
     </nav>
   )
