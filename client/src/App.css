@@ -1,17 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@1,700&display=swap');
 
 :root{
-  --btn-color: #e96;
+  --btn-color: #59e;
   --background-color: #bdf;
   --modal-color:white;
-}
-
-* {
-  /* font-family:'Courier New', Courier, monospace; */
-  font-family: 'Alegreya Sans SC', sans-serif;
+  --link-color: #46e;
 }
 
 body {
+  font-family: 'Alegreya Sans SC', arial, sans-serif;
   background-color: var(--background-color);
 }
 
@@ -46,6 +43,15 @@ body {
   opacity: 1;
 }
 
+.modal > p> a {
+  margin : 0 1em;
+}
+
+.modal > p > a,
+.modal > p > a:visited{
+  color: var(--link-color);
+}
+
 #overlay {
   background-color: #aaa;
   opacity: 0;
@@ -69,10 +75,15 @@ form{
 }
 
 .form-content {
-  display: flex;
-  justify-content:space-between;
+  display: grid;
+  grid-template-columns: auto 150px 20px;
   margin: 10px;
   align-items: center;
+}
+
+.form-content input {
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 700;
 }
 
 .form-content label{
@@ -84,10 +95,11 @@ form{
 }
 
 .btn {
-  background-color: var(--btn-color) !important;
+  background-color: var(--btn-color) ;
   border-radius: 9999px;
   padding: 0.5em;
   width: 95%;
+  color: white;
 }
 
 .btn:hover{
@@ -150,5 +162,10 @@ footer > p {
 }
 footer > a,
 footer > a:visited {
-  color: #46e;
+  color: var(--link-color);
+}
+.visibility {
+  padding: 0 0.3em;
+  cursor: pointer;
+  color: var(--link-color);
 }
