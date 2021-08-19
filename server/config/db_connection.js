@@ -15,10 +15,4 @@ async function connectDatabase() {
 
     return Promise.resolve()
 }
-
-async function disconnect() {
-    await mongoose.connection.close()
-}
-
 module.exports.connect = connectDatabase;
-module.exports.disconnect = disconnect;
