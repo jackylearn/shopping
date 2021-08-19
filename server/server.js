@@ -2,9 +2,10 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const path = require('path');
+const bookRoutes = require('./routes/bookRoutes.js');
 
-const routes = require('./routes.js')
-const auth = require('./auth.js')
+const routes = require('./routes/routes.js')
+const auth = require('./controller/auth.js')
 const passport = require('passport')
 const session = require('express-session')
 const { flash } = require('express-flash-message')
@@ -29,6 +30,7 @@ app.use(flash())
 
 db.connect()
     .then(() => {
+        app.use("/api/books", bookRoutes)
         auth()
         routes(app)
     })

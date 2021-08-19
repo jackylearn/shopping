@@ -1,6 +1,6 @@
 const path = require('path')
 const passport = require('passport')
-const createUser = require('./createUser.js')
+const createUser = require('../controller/createUser.js')
 
 module.exports = (app) => {
 

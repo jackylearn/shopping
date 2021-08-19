@@ -65,7 +65,7 @@ function Modal(props) {
       <form action={props.route} method='post'>
         <div className="form-content">
           <label htmlFor="name">Username</label>
-          <input type="text" name='name' autocomplete="off" placeholder='username' required />
+          <input type="text" name='name' autoComplete="off" placeholder='username' required />
         </div>
         <div className="form-content">
           <label htmlFor="password">Password</label>

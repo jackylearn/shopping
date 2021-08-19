@@ -8,6 +8,14 @@ const bookSchema = new mongoose.Schema({
     author: {
         type: String,
     },
+    description: {
+        type: String,
+        required: true
+    },
+    imageUrl: {
+        type: String,
+        required: true
+    },
     // ISBN: {
     //     type: String,
     //     required: true
@@ -21,16 +29,13 @@ const bookSchema = new mongoose.Schema({
         required: true,
         enum: ['USD', 'TWD']
     },
-    content: {
-        type: Buffer,
-        required: true,
-    },
-    extension: {
-        type: String,
-        enum: ['txt', 'pdf']
-    },
+    // extension: {
+    //     type: String,
+    //     enum: ['txt', 'pdf']
+    // },
     updated_on: {
         type: Date,
+        default: new Date()
     },
 })
 
