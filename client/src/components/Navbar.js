@@ -14,15 +14,20 @@ export default function Navbar(props) {
     return (
         <nav id="navbar">
             <Link to="/" id="logo">BookRental</Link>
-            <div>
+            <div id="nav-links">
                 <span onClick={logout}>Log Out</span>
                 <span onClick={props.loginButton}>Login</span>
                 <span onClick={props.registerButton}>Register</span>
-                <div id="cart-container" onClick={props.showCartScreen}>
+                <div id="cart-container" onClick={props.showCartPreview}>
                     <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
                     <span>Cart</span>
                     <span id="cart-count">0</span>
                 </div>
+            </div>
+            <div id="menu" onClick={props.showSideDrawer}>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </nav>
     )
