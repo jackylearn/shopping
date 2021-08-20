@@ -1,8 +1,10 @@
 import './App.css';
 import { useState, useEffect } from 'react'
+
 import Navbar from './components/Navbar.js'
 import Modal from './components/Modal.js'
 import CartPreview from './components/CartPreview.js'
+import SideDrawer from './components/SideDrawer.js'
 
 import CartScreen from './screens/CartScreen.js'
 import HomeScreen from './screens/HomeScreen.js'
@@ -14,7 +16,7 @@ function App() {
   const [isRegisterModalShown, setRegister] = useState(false)
   const [isLoginModalShown, setLogin] = useState(false)
   const [isCartPreviewShown, setCartPreview] = useState(false)
-
+  const [isSideDrawerShown, setSideDrawer] = useState(false)
 
   const handleFormSwitch = (event) => {
     setRegister(prev => !prev)
@@ -24,21 +26,28 @@ function App() {
   const loginButtonPressed = () => {
     setLogin(true)
     setRegister(false)
+    setSideDrawer(false)
   }
 
   const registerButtonPressed = () => {
     setRegister(true)
     setLogin(false)
+    setSideDrawer(false)
   }
 
   const closeAll = () => {
     setRegister(false)
     setLogin(false)
     setCartPreview(false)
+    setSideDrawer(false)
   }
 
   const showCartPreview = () => {
-    setCartPreview(prev => !prev)
+    setCartPreview(true)
+  }
+
+  const showSideDrawer = () => {
+    setSideDrawer(true)
   }
 
   return (
@@ -49,9 +58,16 @@ function App() {
         <Navbar
           loginButton={loginButtonPressed}
           registerButton={registerButtonPressed}
-          showCartScreen={showCartPreview}
+          showCartPreview={showCartPreview}
+          showSideDrawer={showSideDrawer}
         />
-
+        <SideDrawer
+          status={isSideDrawerShown}
+          loginButton={loginButtonPressed}
+          registerButton={registerButtonPressed}
+          showCartPreview={showCartPreview}
+          closeAll={closeAll}
+        />
         <Modal
           name="Register"
           route="/auth/register"
@@ -78,10 +94,16 @@ function App() {
         </main>
         <CartPreview
           status={isCartPreviewShown}
+          closeAll={closeAll}
         />
         <div
           id="overlay"
-          className={isLoginModalShown || isRegisterModalShown || isCartPreviewShown ? "active" : ""}
+          className={
+            isLoginModalShown
+              || isRegisterModalShown
+              || isCartPreviewShown
+              || isSideDrawerShown
+              ? "active" : ""}
           onClick={closeAll}
         ></div>
       </div>

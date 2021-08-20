@@ -6,7 +6,7 @@
   --nav-color: #cee3ff;
   --modal-color:white;
   --link-color: #46e;
-  --cart-preview-color: #555;
+  --cart-preview-color: #e3e3e3;
   --font-color: #222;
 }
 
@@ -44,7 +44,6 @@ body {
 #overlay.active {
   opacity: 0.4;
   z-index:9;
-
 }
 
 
@@ -59,6 +58,7 @@ body {
   padding: 0.5em;
   width: 95%;
   color: white;
+  text-align: center;
 }
 
 .btn:hover{
@@ -68,6 +68,15 @@ body {
 
 
 img {
-  width: 100%;
-  object-fit: contain;
+  max-width: 100vw;
+  height: auto;
+}
+
+main {
+  margin: 90px 0;
+  
+}
+
+.screen-title {
+  margin:1em;
 }
