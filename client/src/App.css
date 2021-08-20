@@ -7,12 +7,14 @@
   --modal-color:white;
   --link-color: #46e;
   --cart-preview-color: #555;
+  --font-color: #222;
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing: border-box;
+  color: var(--font-color);
 }
 
 body {

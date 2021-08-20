@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Navbar.css'
 import { useEffect, useState } from 'react'
-
+import { Link } from 'react-router-dom'
 
 export default function Navbar(props) {
     const [loginStatus, setLoginStatus] = useState(false)
@@ -13,7 +13,7 @@ export default function Navbar(props) {
 
     return (
         <nav id="navbar">
-            <div id="logo">BookRental</div>
+            <Link to="/" id="logo">BookRental</Link>
             <div>
                 <span onClick={logout}>Log Out</span>
                 <span onClick={props.loginButton}>Login</span>

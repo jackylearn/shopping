@@ -21,19 +21,25 @@ nav {
   }
   
   nav > div >span {
-    padding: 0.5em 2em;
-    margin: 0 1em;
+    padding: 0.5rem 2rem;
+    margin: 0 1rem;
     cursor: pointer;
   }
   
   nav > div > span:hover{
-    box-shadow: 0 0 5px #777;
+    box-shadow: 0 0 5px #444;
     opacity: 0.7;
   }
   
   
   #logo {
    font-size: 20px;
+   padding: 0.5rem 2rem;
+  }
+
+  #logo:hover{
+    box-shadow: 0 0 5px #444;
+    opacity: 0.7;
   }
 
   
@@ -50,7 +56,7 @@ nav {
 }
   
 #cart-container:hover {
-    opacity: 0.7;
+    background-color: var(--btn-color);
 }
   
 #cart-count {
