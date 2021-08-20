@@ -1,0 +1,56 @@
+.book-screen {
+    display: flex;
+}
+
+.book-screen > div{
+    padding: 0 0.5rem;
+}
+
+.book-screen-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex: 0.8;
+}
+
+.left-img {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.left-info {
+    height: fit-content;
+}
+
+.left-info > p:not(:last-child) {
+    padding: 0.3rem;
+    border-bottom: 1px solid #999;
+}
+
+.book-screen-right{
+    margin-top: 150px;
+    display: flex;
+    flex: 0.2;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-buttons > div{
+    margin: 1rem;
+}
+
+.follow-btn {
+    background-color: var(--follow-btn-color);
+}
+
+@media (max-width:600px) {
+    .book-screen {
+        flex-direction: column;
+    }
+
+    .book-screen-right{
+        margin-top: 50px;
+    }
+}

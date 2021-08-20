@@ -8,18 +8,19 @@
   --link-color: #46e;
   --cart-preview-color: #e3e3e3;
   --font-color: #222;
+  --follow-btn-color: #e56;
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing: border-box;
-  color: var(--font-color);
 }
 
 body {
   font-family: 'Alegreya Sans SC', arial, sans-serif;
   background-color: var(--background-color);
+  color: var(--font-color);
 }
 
 .app {
@@ -54,6 +55,7 @@ body {
 
 .btn {
   background-color: var(--btn-color) ;
+  box-shadow: 0 2px 2px #559;
   border-radius: 9999px;
   padding: 0.5em;
   width: 95%;
@@ -63,6 +65,7 @@ body {
 
 .btn:hover{
   opacity: 0.8;
+  box-shadow: none;
 }
 
 

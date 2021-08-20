@@ -10,9 +10,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 // icon for famous company e.g. apple, facebook, google
 // import { fab } from '@fortawesome/free-brands-svg-icons'
 // other icons will be used 
-import { faShoppingCart, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faEye, faEyeSlash, faHeart, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faShoppingCart, faEye, faEyeSlash)
+library.add(faShoppingCart, faEye, faEyeSlash, faHeart, faTrash)
 
 
 ReactDOM.render(
