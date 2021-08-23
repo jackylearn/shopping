@@ -4,48 +4,48 @@ const createUser = require('../controller/createUser.js')
 const express = require('express')
 const router = express.Router()
 
+const getUserInfo = require('../controller/getUserInfo.js')
 
-router.get('/', async (req, res) => {
-    const msg = await req.consumeFlash('success')
-    console.log(msg)
-})
+const returnToFrontEnd = async (req, res) => {
+    const successMsg = await req.consumeFlash('success')
+    const errorMsg = await req.consumeFlash('error')
+    if (successMsg) {
+        res.json({ success: successMsg[0], user: req.session.passport.user })
+    } else {
+        res.json({ error: errorMsg[0] })
+    }
+}
+
+
 router.post('/login', passport.authenticate('local', {
     successFlash: 'Welcome!',
-    successRedirect: '/',
     failureFlash: 'Invalid username or password.',
-    failureRedirect: '/'
-}))
+}), returnToFrontEnd)
 
 router.post('/register', async (req, res, next) => {
     try {
         const newUser = await createUser(req.body.name, req.body.password)
         next(null, newUser)
     } catch (err) {
-        req.flash('error', 'duplicate username')
-        console.log('duplicate username')
-        res.redirect('/')
+        res.json({ error: 'duplicate username' })
     }
 },
     passport.authenticate('local',
         {
             successFlash: 'Welcome!',
-            successRedirect: '/',
             failureFlash: 'Invalid username or password.',
-            failureRedirect: '/fail'
         }
-    )
+    ),
+    returnToFrontEnd
 )
 
-router.get('/fail', async (req, res) => {
-    const msg2 = await req.consumeFlash('error')
-    console.log(msg2)
-    res.sendFile(process.cwd() + '../client/public/fail.html')
-})
 
 router.get('/logout', (req, res) => {
     req.logout()
-    res.redirect('/')
-})
+    next()
+}, returnToFrontEnd)
+
+router.get('/:id', getUserInfo)
 
 // router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
 
@@ -54,5 +54,6 @@ router.get('/logout', (req, res) => {
 //         successRedirect: '/',
 //         failureRedirect: '/'
 //     }))
+
 
 module.exports = router

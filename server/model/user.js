@@ -12,7 +12,13 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    follow: [String]
+    follow: [String],
+    purchased: [
+        {
+            id: String,
+            expired: Date
+        }
+    ]
 })
 
 module.exports = mongoose.model('user', userSchema)
