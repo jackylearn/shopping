@@ -6,19 +6,39 @@
     align-items: center;
     padding-bottom: 0.8em;
     width: 350px;
+    height: 400px;
     margin-top: 10px auto;
 }
 
 .book-info > p {
-    margin: 0.5rem 1rem;
+    width: 300px;
+    margin: 0.5rem 24px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .info-name {
     font-size: 1.2em;
+    display:flex;
+    justify-content: space-between;
 }
+
+
 
 .book img {
     margin: 20px;
 }
 
 
+.follow-icon {
+    cursor: pointer;
+    color: white;
+}
+
+.follow-icon:hover {
+    color: var(--follow-btn-color);
+}
+.followed {
+    color: var(--follow-btn-color);
+}
