@@ -35,6 +35,6 @@
 .cart-item-delete:active,
 .cart-item-delete:focus
 {
-    color: #b34;
+    color: var(--danger-color);
     transform: scale(1.2)
 }

@@ -26,7 +26,11 @@ export default function Book(props) {
                 <p className='info-name'>
                     <span>{props.item.title}</span>
                     <span className='author'>{props.item.author}</span>
-                    <FontAwesomeIcon icon={['fas', 'heart']} id={`${props.item._id}-btn`} className='follow-icon' onClick={followBookHandler} />
+                    <FontAwesomeIcon
+                        icon={['fas', 'heart']}
+                        id={`${props.item._id}-btn`}
+                        className={followedBooks[props.item._id] ? 'follow-icon followed' : 'follow-icon'}
+                        onClick={followBookHandler} />
                 </p>
                 <p className='info-description'>{props.item.description.slice(0, 100) + "..."}</p>
                 <p className='price'>Rent for 30 days: {props.item.price} {props.item.currency}</p>

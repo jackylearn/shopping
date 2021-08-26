@@ -39,6 +39,17 @@
     margin: 0.8em;
 }
 
+.reset-cart-btn {
+    background-color: var(--danger-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset-cart-btn > * {
+    margin:  0 0.8em;
+}
+
 
 @media (max-width: 600px) {
     .cart-screen{
