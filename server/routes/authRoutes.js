@@ -10,7 +10,7 @@ const returnToFrontEnd = async (req, res) => {
     const successMsg = await req.consumeFlash('success')
     const errorMsg = await req.consumeFlash('error')
     if (successMsg && req.isAuthenticated())
-        res.json({ message: successMsg[0], user: req.session.passport.user })
+        res.json({ message: successMsg[0], user: req.user.name })
     else if (successMsg)
         res.json({ message: successMsg[0] })
     else

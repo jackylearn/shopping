@@ -6,12 +6,12 @@ export const authReducer = (state = { user: "", login: false }, action) => {
         case actionTypes.REGISTER_SUCCESS:
 
             return {
-                user: action.payload,
+                data: action.payload,
                 login: true
             }
         case actionTypes.LOGOUT_SUCCESS:
             return {
-                user: action.payload,
+                data: action.payload,
                 login: false
             }
 

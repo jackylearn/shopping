@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar(props) {
 
-    const loginStatus = useSelector(state => state.auth.login)
+    const { login: loginStatus, data } = useSelector(state => state.auth)
     const cartItems = Object.keys(useSelector(state => state.cart))
 
     const dispatch = useDispatch();
@@ -21,7 +21,11 @@ export default function Navbar(props) {
             <div id="nav-links">
                 {loginStatus
                     ?
-                    <span onClick={logoutHandler}>Log Out</span>
+                    <>
+                        <p>{data.message}</p>
+                        <p>{data.user || ""}</p>
+                        <span onClick={logoutHandler}>Log Out</span>
+                    </>
                     :
                     <>
                         <span onClick={props.loginButton}>Login</span>
