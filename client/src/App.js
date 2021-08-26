@@ -42,13 +42,9 @@ function App() {
     setSideDrawer(false)
   }
 
-  const showCartPreview = () => {
-    setCartPreview(true)
-  }
+  const showCartPreview = () => setCartPreview(true)
 
-  const showSideDrawer = () => {
-    setSideDrawer(true)
-  }
+  const showSideDrawer = () => setSideDrawer(true)
 
   return (
     <Router >
