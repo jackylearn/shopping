@@ -2,7 +2,9 @@ import './CartScreen.css'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItem from '../components/CartItem.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { resetCart } from '../redux/actions/cartActions.js'
+import { resetCart, checkout } from '../redux/actions/cartActions.js'
+import { useEffect } from 'react'
+
 
 
 export default function CartScreen(props) {
@@ -10,14 +12,27 @@ export default function CartScreen(props) {
     const cartItems = useSelector(state => state.cart)
     const itemsId = Object.keys(cartItems)
     const dispatch = useDispatch();
+    const checkoutUrl = useSelector(state => state.payment.destination)
 
+    const checkoutHandler = () => {
+        if (itemsId.length === 0) return alert("No item in your cart")
+
+        dispatch(checkout())
+    }
+
+    useEffect(() => {
+        if (checkoutUrl) {
+            window.location = checkoutUrl
+            // dispatch(resetCart())
+        }
+    }, [checkoutUrl])
 
     return (
         <div className='cart-screen'>
             <div className='cart-screen-left'>
                 <h2>Shopping Cart</h2>
                 {itemsId.length > 0
-                    ? itemsId.map((itemId => (<CartItem itemId={itemId} />)))
+                    ? itemsId.map((itemId => (<CartItem key={`${itemId}-cart-item`} itemId={itemId} />)))
                     : <h3>No item in your cart</h3>
                 }
             </div>
@@ -30,7 +45,7 @@ export default function CartScreen(props) {
                     <FontAwesomeIcon icon={['fas', 'trash']} />
                     Remove All from Cart
                 </div>
-                <div className="btn">Proceed to checkout</div>
+                <div className="btn" onClick={checkoutHandler}>Proceed to checkout</div>
             </div>
         </div>
     )

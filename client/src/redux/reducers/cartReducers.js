@@ -20,3 +20,18 @@ export const cartReducer = (state = {}, action) => {
             return state
     }
 }
+
+export const checkoutReducer = (state = {}, action) => {
+    switch (action.type) {
+        case actionTypes.CHECKOUT_SUCCESS:
+            return {
+                destination: action.destination
+            }
+        case actionTypes.CHECKOUT_FAILURE:
+            return {
+                error: action.error
+            }
+        default:
+            return state
+    }
+}

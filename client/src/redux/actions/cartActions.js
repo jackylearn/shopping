@@ -34,3 +34,19 @@ export const resetCart = () => (dispatch, getState) => {
     dispatch({ type: actionTypes.CART_RESET })
     localStorage.setItem('cart', JSON.stringify(getState().cart))
 }
+
+export const checkout = () => async (dispatch, getState) => {
+    try {
+        dispatch({ type: actionTypes.CHECKOUT_REQUEST })
+        const { data } = await axios.post('/payment/checkout', { items: Object.keys(getState().cart) })
+        dispatch({
+            type: actionTypes.CHECKOUT_SUCCESS,
+            destination: data.paymentUrl
+        })
+    } catch (err) {
+        dispatch({
+            type: actionTypes.CHECKOUT_FAILURE,
+            error: err.message
+        })
+    }
+}
