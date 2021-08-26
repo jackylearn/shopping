@@ -39,8 +39,8 @@ function App() {
   }
 
   const closeAll = () => {
-    dispatch(closeLoginModal())
-    dispatch(closeRegisterModal())
+    if (isLoginModalShown) dispatch(closeLoginModal())
+    if (isRegisterModalShown) dispatch(closeRegisterModal())
     setCartPreview(false)
     setSideDrawer(false)
   }
