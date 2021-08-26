@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Modal.css'
 
@@ -16,7 +16,6 @@ export default function Modal(props) {
 
     const usernameHandler = event => setUserName(event.target.value)
     const passwordHandler = event => setPassword(event.target.value)
-    const { login: loginStatus, error } = useSelector(state => state.auth)
 
     // public state 
     const dispatch = useDispatch();
@@ -30,8 +29,6 @@ export default function Modal(props) {
         setUserName("")
         setPassword("")
     }
-
-
 
     return (
         <div id={props.name.toLowerCase()} className={props.status ? "modal active" : "modal"} >
