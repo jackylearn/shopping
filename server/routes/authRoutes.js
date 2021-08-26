@@ -9,12 +9,14 @@ const getUserInfo = require('../controller/getUserInfo.js')
 const returnToFrontEnd = async (req, res) => {
     const successMsg = await req.consumeFlash('success')
     const errorMsg = await req.consumeFlash('error')
-    if (successMsg) {
-        res.json({ success: successMsg[0], user: req.session.passport.user })
-    } else {
-        res.json({ error: errorMsg[0] })
-    }
+    if (successMsg && req.isAuthenticated())
+        res.json({ message: successMsg[0], user: req.session.passport.user })
+    else if (successMsg)
+        res.json({ message: successMsg[0] })
+    else
+        res.json({ message: errorMsg[0] })
 }
+
 
 
 router.post('/login', passport.authenticate('local', {
@@ -25,9 +27,10 @@ router.post('/login', passport.authenticate('local', {
 router.post('/register', async (req, res, next) => {
     try {
         const newUser = await createUser(req.body.name, req.body.password)
+        console.log(`New user ${req.body.name} try to register`)
         next(null, newUser)
     } catch (err) {
-        res.json({ error: 'duplicate username' })
+        res.json({ message: 'duplicate username' })
     }
 },
     passport.authenticate('local',
@@ -40,8 +43,9 @@ router.post('/register', async (req, res, next) => {
 )
 
 
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res, next) => {
     req.logout()
+    req.flash('success', 'Goodbye!')
     next()
 }, returnToFrontEnd)
 
