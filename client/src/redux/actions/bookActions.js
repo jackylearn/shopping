@@ -1,7 +1,7 @@
 import * as actionTypes from '../constants/bookConstants.js'
 import axios from 'axios'
 
-export const getBooks = () => async (dispatch) => {
+export const getBooks = () => async (dispatch, getState) => {
     try {
         dispatch({
             type: actionTypes.GET_BOOKS_REQUEST
@@ -13,6 +13,12 @@ export const getBooks = () => async (dispatch) => {
             payload: data
         })
 
+        const now = new Date()
+        localStorage.setItem('books', JSON.stringify({
+            value: getState().getBooks.books,
+            expire: now.getTime() + 60 * 10 * 1000
+        }))
+
     } catch (err) {
         dispatch({
             type: actionTypes.GET_BOOKS_FAILURE,
@@ -23,7 +29,7 @@ export const getBooks = () => async (dispatch) => {
     }
 }
 
-export const getBookDetails = (id) => async (dispatch) => {
+export const getBookDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({
             type: actionTypes.GET_BOOK_DETAILS_REQUEST
@@ -34,7 +40,7 @@ export const getBookDetails = (id) => async (dispatch) => {
             type: actionTypes.GET_BOOK_DETAILS_SUCCESS,
             payload: data
         })
-
+        localStorage.setItem('book', JSON.stringify(getState().getBookDetails.book))
     } catch (err) {
         dispatch({
             type: actionTypes.GET_BOOK_DETAILS_FAILURE,
