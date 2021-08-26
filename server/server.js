@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bookRoutes = require('./routes/bookRoutes.js');
-
+const paymentRoutes = require('./routes/paymentRoutes.js')
 const authRoutes = require('./routes/authRoutes.js')
 const auth = require('./controller/auth.js')
 const passport = require('passport')
@@ -33,6 +33,7 @@ db.connect()
     .then(() => {
         app.use("/api/books", bookRoutes)
         app.use("/auth", authRoutes)
+        app.use("/payment", paymentRoutes)
 
         app.use((req, res) => {
             res.status(404)
