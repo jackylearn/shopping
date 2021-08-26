@@ -61,6 +61,7 @@ body {
   width: 95%;
   color: white;
   text-align: center;
+  cursor: pointer;
 }
 
 .btn:hover{

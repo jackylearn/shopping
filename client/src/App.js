@@ -13,31 +13,31 @@ import BooksScreen from './screens/BookScreen.js'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
-  const [isRegisterModalShown, setRegister] = useState(false)
-  const [isLoginModalShown, setLogin] = useState(false)
+  const [isRegisterModalShown, setRegisterModal] = useState(false)
+  const [isLoginModalShown, setLoginModal] = useState(false)
   const [isCartPreviewShown, setCartPreview] = useState(false)
   const [isSideDrawerShown, setSideDrawer] = useState(false)
 
-  const handleFormSwitch = (event) => {
-    setRegister(prev => !prev)
-    setLogin(prev => !prev)
+  const handleFormSwitch = () => {
+    setRegisterModal(prev => !prev)
+    setLoginModal(prev => !prev)
   }
 
   const loginButtonPressed = () => {
-    setLogin(true)
-    setRegister(false)
+    setLoginModal(true)
+    setRegisterModal(false)
     setSideDrawer(false)
   }
 
   const registerButtonPressed = () => {
-    setRegister(true)
-    setLogin(false)
+    setRegisterModal(true)
+    setLoginModal(false)
     setSideDrawer(false)
   }
 
   const closeAll = () => {
-    setRegister(false)
-    setLogin(false)
+    setRegisterModal(false)
+    setLoginModal(false)
     setCartPreview(false)
     setSideDrawer(false)
   }
@@ -70,19 +70,19 @@ function App() {
         />
         <Modal
           name="Register"
-          route="/auth/register"
           message="Already has an account?"
           link="login"
           handleFormSwitch={handleFormSwitch}
           status={isRegisterModalShown}
+          closeAll={closeAll}
         />
         <Modal
           name="Login"
-          route="/auth/login"
           message="Do not have an account?"
           link="register"
           handleFormSwitch={handleFormSwitch}
           status={isLoginModalShown}
+          closeAll={closeAll}
         />
         <main>
           <Switch>

@@ -12,6 +12,7 @@
     align-items: center;
     padding-top: 1em;
   }
+
   
   .cart-preview-active{
     left: calc(100% - 350px);
@@ -19,10 +20,6 @@
   
   .cart-preview-hidden{
     left: 120%;
-  }
-  #cart-preview > ul > li {
-    list-style: none;
-    padding: 0.5em;
   }
 
   .checkout-btn {
@@ -35,11 +32,10 @@
   }
 
 
-
-#cart-preview > ul {
+.book-preview-wrapper{
   margin: 1em 0;
   width: 90%;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 140px);
   overflow: auto;
 }
 

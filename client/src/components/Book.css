@@ -6,16 +6,13 @@
     align-items: center;
     padding-bottom: 0.8em;
     width: 350px;
-    height: 400px;
+    height: fit-content;
     margin-top: 10px auto;
 }
 
 .book-info > p {
     width: 300px;
     margin: 0.5rem 24px;
-    overflow:hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
 .info-name {

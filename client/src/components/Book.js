@@ -1,31 +1,38 @@
 import './Book.css'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+//redux actions
+import { followBook, followBookCancel } from '../redux/actions/bookActions.js'
 
 export default function Book(props) {
-    const [followed, setFollow] = useState(false)
+    const followedBooks = useSelector(state => state.followedBooks)
 
-    const followBook = (event) => {
-        const item = event.target;
-        setFollow(prev => !prev)
+    const dispatch = useDispatch();
+
+    const followBookHandler = () => {
+        document.getElementById(`${props.item._id}-btn`).classList.toggle('followed')
+        if (!followedBooks[props.item._id])
+            dispatch(followBook(props.item._id))
+        else
+            dispatch(followBookCancel(props.item._id))
     }
 
     return (
         <div className='book'>
-            <img src="https://picsum.photos/300/200" alt="book img" />
+            <img src={props.item.imageUrl} alt={props.item.name} />
 
             <div className='book-info'>
                 <p className='info-name'>
-                    <span>Book1</span>
-                    <span className='author'>Author</span>
-                    <FontAwesomeIcon icon={['fas', 'heart']} className={followed ? 'follow-icon' + " followed" : 'follow-icon'} onClick={followBook} />
+                    <span>{props.item.title}</span>
+                    <span className='author'>{props.item.author}</span>
+                    <FontAwesomeIcon icon={['fas', 'heart']} id={`${props.item._id}-btn`} className='follow-icon' onClick={followBookHandler} />
                 </p>
-                <p className='info-description'>Cras congue mi sed eros consectetur tincidunt. Cras mollis dolor ut mi condimentum, sit amet rutrum odio fringilla. Nam sollicitudin venenatis dui, ut porta justo mollis sit amet. Nunc eu velit risus. Proin eu lorem volutpat, facilisis dolor ac, porta tortor. Nam at nunc pharetra, finibus massa vitae, rhoncus erat. Nunc fermentum efficitur arcu nec feugiat. Quisque vel augue a mauris euismod sagittis nec at nunc. Nulla non elit sed ipsum porta sollicitudin. Etiam aliquam leo ac risus convallis, quis dictum augue feugiat. </p>
-                <p className='price'>Rent for 30 days: {`$1`}</p>
+                <p className='info-description'>{props.item.description.slice(0, 100) + "..."}</p>
+                <p className='price'>Rent for 30 days: {props.item.price} {props.item.currency}</p>
             </div>
 
-            <Link to={`/book/${1}`} className='info-button btn'>View Detail</Link>
+            <Link to={`/book/${props.item._id}`} className='info-button btn'>View Detail</Link>
         </div>
     )
 }

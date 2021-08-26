@@ -1,0 +1,23 @@
+.book-preview {
+    display: grid;
+    grid-template-columns: auto 3fr 1fr;
+    grid-gap: 1em;
+    place-content: center;
+}
+
+.preview-img {
+    grid-area: 1/1/4/2;
+}
+
+
+
+.preview-img > img {
+    height: 80px;
+}
+
+.preview-delete {
+    grid-area: 1/3/4/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

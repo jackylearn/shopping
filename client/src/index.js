@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// redux
+import { Provider } from 'react-redux'
+import store from './redux/store.js';
 
 // fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -16,9 +19,11 @@ library.add(faShoppingCart, faEye, faEyeSlash, faHeart, faTrash)
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store} >
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

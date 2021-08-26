@@ -39,10 +39,19 @@
 
 .right-buttons > div{
     margin: 1rem;
+    width: 120px;
 }
 
 .follow-btn {
     background-color: var(--follow-btn-color);
+}
+
+.in-cart-btn {
+    background-color: #888;
+}
+
+.followed-btn {
+    background-color: #888
 }
 
 @media (max-width:600px) {
