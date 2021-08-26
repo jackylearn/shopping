@@ -34,7 +34,7 @@ export default function SideDrawer(props) {
                 <span id="side-drawer-cart-count">{itemsId.length}</span>
             </div>
             <div id="side-drawer-cart-preview">
-                {itemsId.map(itemId => (<BookPreview itemId={itemId} />))}
+                {itemsId.map(itemId => (<BookPreview key={`${itemId}-book-preview`} itemId={itemId} />))}
                 <Link to="/cart" className="btn checkout-btn" onClick={props.closeAll}>
                     <span>Totals: ${
                         Math.floor(itemsId.reduce((sum, itemId) => sum + cartItems[itemId].price, 0) * 100) / 100
