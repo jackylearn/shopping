@@ -16,12 +16,15 @@ export default function CartScreen(props) {
         <div className='cart-screen'>
             <div className='cart-screen-left'>
                 <h2>Shopping Cart</h2>
-                {itemsId.map((itemId => (<CartItem itemId={itemId} />)))}
+                {itemsId.length > 0
+                    ? itemsId.map((itemId => (<CartItem itemId={itemId} />)))
+                    : <h3>No item in your cart</h3>
+                }
             </div>
             <div className='cart-screen-right'>
                 <div className='cart-screen-info'>
                     <p>Subtotal ({itemsId.length}) items</p>
-                    <p>{"$ " + itemsId.reduce((sum, itemId) => sum + parseFloat(cartItems[itemId].price), 0)}</p>
+                    <p>{"$ " + Math.floor(itemsId.reduce((sum, itemId) => sum + cartItems[itemId].price, 0) * 100) / 100}</p>
                 </div>
                 <div className="btn reset-cart-btn" onClick={() => dispatch(resetCart())}>
                     <FontAwesomeIcon icon={['fas', 'trash']} />

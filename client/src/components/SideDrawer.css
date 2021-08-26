@@ -57,19 +57,14 @@
     color: white;
 }
 
-#side-drawer-cart-preview > ul {
-    width: 100%;
-    overflow: auto;
-}
-
-#side-drawer > ul > li {
-    list-style: none;
-    margin: 0.5rem 0;
-}
-
 #side-drawer-cart-preview{
+    border-top: 1px solid;
     display: flex;
+    flex-direction: column;
     width: 100%;
     max-height: calc(100% - 80px);
+    height: calc(100vh - 140px);
     justify-content: center;
+    align-items: center;
+    overflow: auto;
 }

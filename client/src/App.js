@@ -1,5 +1,6 @@
 import './App.css';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Navbar from './components/Navbar.js'
 import Modal from './components/Modal.js'
@@ -12,32 +13,34 @@ import BooksScreen from './screens/BookScreen.js'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import { openLoginModal, closeLoginModal, openRegisterModal, closeRegisterModal } from './redux/actions/modalActions.js'
+
 function App() {
-  const [isRegisterModalShown, setRegisterModal] = useState(false)
-  const [isLoginModalShown, setLoginModal] = useState(false)
+  const dispatch = useDispatch();
+  const { login: isLoginModalShown, register: isRegisterModalShown } = useSelector(state => state.modal)
   const [isCartPreviewShown, setCartPreview] = useState(false)
   const [isSideDrawerShown, setSideDrawer] = useState(false)
 
   const handleFormSwitch = () => {
-    setRegisterModal(prev => !prev)
-    setLoginModal(prev => !prev)
+    if (isLoginModalShown)
+      dispatch(openRegisterModal())
+    else
+      dispatch(openLoginModal())
   }
 
   const loginButtonPressed = () => {
-    setLoginModal(true)
-    setRegisterModal(false)
+    dispatch(openLoginModal())
     setSideDrawer(false)
   }
 
   const registerButtonPressed = () => {
-    setRegisterModal(true)
-    setLoginModal(false)
+    dispatch(openRegisterModal())
     setSideDrawer(false)
   }
 
   const closeAll = () => {
-    setRegisterModal(false)
-    setLoginModal(false)
+    dispatch(closeLoginModal())
+    dispatch(closeRegisterModal())
     setCartPreview(false)
     setSideDrawer(false)
   }

@@ -13,6 +13,8 @@ export default function HomeScreen(props) {
     const { books, loading, error } = getBooks;
 
     useEffect(() => {
+        // prevent fetch data from backend again
+        if (books?.length > 0) return
         dispatch(listBooks())
     }, [dispatch])
 

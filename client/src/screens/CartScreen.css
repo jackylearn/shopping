@@ -50,6 +50,10 @@
     margin:  0 0.8em;
 }
 
+h3 {
+    margin: 1rem;
+    text-align: center;
+}
 
 @media (max-width: 600px) {
     .cart-screen{

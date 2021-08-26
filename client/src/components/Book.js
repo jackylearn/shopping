@@ -4,13 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 //redux actions
 import { followBook, followBookCancel } from '../redux/actions/bookActions.js'
+import { openLoginModal } from '../redux/actions/modalActions.js'
 
 export default function Book(props) {
     const followedBooks = useSelector(state => state.followedBooks)
+    const loginStatus = useSelector(state => state.auth.login)
 
     const dispatch = useDispatch();
 
     const followBookHandler = () => {
+        if (!loginStatus) return dispatch(openLoginModal())
         document.getElementById(`${props.item._id}-btn`).classList.toggle('followed')
         if (!followedBooks[props.item._id])
             dispatch(followBook(props.item._id))
