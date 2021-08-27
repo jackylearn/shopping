@@ -64,6 +64,8 @@ export const followBook = (id) => (dispatch, getState) => {
     })
     localStorage.setItem('follow', JSON.stringify(getState().followedBooks))
 
+    const userId = getState().auth.data.id
+    axios.put(`/api/user/${userId}/followedBooks`, { followedBooks: [id, true] })
 }
 
 export const followBookCancel = (id) => (dispatch, getState) => {
@@ -72,4 +74,6 @@ export const followBookCancel = (id) => (dispatch, getState) => {
         payload: id
     })
     localStorage.setItem('follow', JSON.stringify(getState().followedBooks))
+    const userId = getState().auth.data.id
+    axios.put(`/api/user/${userId}/followedBooks`, { followedBooks: [id, false] })
 }

@@ -2,9 +2,13 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const path = require('path');
+
+
 const bookRoutes = require('./routes/bookRoutes.js');
 const paymentRoutes = require('./routes/paymentRoutes.js')
 const authRoutes = require('./routes/authRoutes.js')
+const userRoutes = require('./routes/userRoutes.js')
+
 const auth = require('./controller/auth.js')
 const passport = require('passport')
 const session = require('express-session')
@@ -26,12 +30,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash())
+app.use((req, res, next) => { console.log(req.url); next() })
 
 auth()
 
 db.connect()
     .then(() => {
         app.use("/api/books", bookRoutes)
+        app.use("/api/user", userRoutes)
         app.use("/auth", authRoutes)
         app.use("/payment", paymentRoutes)
 

@@ -4,13 +4,12 @@ const createUser = require('../controller/createUser.js')
 const express = require('express')
 const router = express.Router()
 
-const getUserInfo = require('../controller/getUserInfo.js')
 
 const returnToFrontEnd = async (req, res) => {
     const successMsg = await req.consumeFlash('success')
     const errorMsg = await req.consumeFlash('error')
     if (successMsg && req.isAuthenticated())
-        res.json({ message: successMsg[0], user: req.user.name })
+        res.json({ message: successMsg[0], user: req.user.name, id: req.user._id })
     else if (successMsg)
         res.json({ message: successMsg[0] })
     else
@@ -49,7 +48,7 @@ router.get('/logout', (req, res, next) => {
     next()
 }, returnToFrontEnd)
 
-router.get('/:id', getUserInfo)
+
 
 // router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
 

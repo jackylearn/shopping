@@ -12,13 +12,16 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    follow: [String],
-    purchased: [
-        {
-            id: String,
-            expired: Date
-        }
-    ]
+    follow: {
+        type: Map,
+        of: String,
+        default: new Map()
+    },
+    purchased: {
+        type: Map,
+        of: String,
+        default: new Map()
+    }
 })
 
 module.exports = mongoose.model('user', userSchema)
