@@ -17,9 +17,9 @@ router.put('/:id/followedBooks', updateFollowedBooks, (req, res) => {
 })
 
 //@desc     PUT purchased list into DB
-//@route    PUT /api/user/:id/purchasedBook after checkout
+//@route    PUT /api/user/:id/purchasedBooks after checkout
 //@access   private
-router.put('/:id/purchasedBook', updatePurchasedBooks, (req, res) => {
+router.put('/:id/purchasedBooks', updatePurchasedBooks, (req, res) => {
     res.send('success')
 })
 

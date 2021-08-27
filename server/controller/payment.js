@@ -2,11 +2,10 @@ const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 const Books = require('../model/book.js')
 
 module.exports = async function checkout(req, res) {
-    console.log(req.body.items)
     try {
+        // line_items for stripe
         const items = req.body.items.map(async itemId => {
             const bookInfo = await Books.findById(itemId)
-            console.log(bookInfo)
             return {
                 price_data: {
                     currency: bookInfo.currency.toLowerCase(),
@@ -25,7 +24,7 @@ module.exports = async function checkout(req, res) {
             payment_method_types: ['card'],
             mode: 'payment',
             line_items: await Promise.all(items),
-            success_url: `${process.env.SERVER_URL}/payment/saveInfo`,
+            success_url: `${process.env.CLIENT_URL}/success`,
             cancel_url: `${process.env.CLIENT_URL}/cart`,
         }
         const session = await stripe.checkout.sessions.create(sessionRequirement)

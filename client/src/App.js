@@ -10,6 +10,7 @@ import SideDrawer from './components/SideDrawer.js'
 import CartScreen from './screens/CartScreen.js'
 import HomeScreen from './screens/HomeScreen.js'
 import BooksScreen from './screens/BookScreen.js'
+import SuccessScreen from './screens/SuccessScreen.js';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -88,6 +89,7 @@ function App() {
             <Route exact path="/" component={HomeScreen} />
             <Route exact path="/book/:id" component={BooksScreen} />
             <Route exact path="/cart" component={CartScreen} />
+            <Route exact path="/success" component={SuccessScreen} />
           </Switch>
 
         </main>
