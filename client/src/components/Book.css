@@ -28,14 +28,19 @@
 }
 
 
-.follow-icon {
+.follow-icon,
+.cart-icon {
     cursor: pointer;
     color: white;
+    margin-left: 0.5rem
 }
 
-.follow-icon:hover {
+.follow-icon:hover,
+.cart-icon:hover {
     color: var(--follow-btn-color);
 }
-.followed {
+.followed,
+.in-cart {
     color: var(--follow-btn-color);
 }
+
