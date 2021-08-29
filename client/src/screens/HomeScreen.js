@@ -37,7 +37,7 @@ export default function HomeScreen() {
                     : error
                         ? <h2>{error}</h2>
                         : books.map(book => (
-                            <Book key={book._id} item={book} purchased={purchasedBooks[book._id] || false} />
+                            <Book key={book._id} item={book} purchased={purchasedBooks[book._id] > Date.now() || false} />
                         ))
                 }
             </div>

@@ -15,7 +15,7 @@ export default function BookScreen({ match }) {
 
     const dispatch = useDispatch();
     const book = useSelector(state => state.getBooks.books).filter(book => book._id === match.params.id)[0]
-    const purchased = purchasedBooks[book._id] || false
+    const purchased = purchasedBooks[book._id] > Date.now() || false
 
     const addToCartHandler = () => {
         document.querySelector(".add-cart-btn").classList.toggle('in-cart-btn')
