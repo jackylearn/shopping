@@ -11,9 +11,11 @@ export default function BookScreen({ match }) {
     const loginStatus = useSelector(state => state.auth.login)
     const followedBooks = useSelector(state => state.followedBooks)
     const booksInCart = useSelector(state => state.cart)
+    const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks)
 
     const dispatch = useDispatch();
     const book = useSelector(state => state.getBooks.books).filter(book => book._id === match.params.id)[0]
+    const purchased = purchasedBooks[book._id] || false
 
     const addToCartHandler = () => {
         document.querySelector(".add-cart-btn").classList.toggle('in-cart-btn')
@@ -48,9 +50,12 @@ export default function BookScreen({ match }) {
             </div>
             <div className='book-screen-right'>
                 <div className='right-buttons'>
-                    {booksInCart[book._id]
-                        ? <div className='btn add-cart-btn in-cart-btn' onClick={addToCartHandler} >In cart</div>
-                        : <div className='btn add-cart-btn' onClick={addToCartHandler} >Add to Cart</div>
+                    {purchased
+                        ? <div className='btn add-cart-btn purchased-btn'>Purchased</div>
+
+                        : booksInCart[book._id]
+                            ? <div className='btn add-cart-btn in-cart-btn' onClick={addToCartHandler} >In cart</div>
+                            : <div className='btn add-cart-btn' onClick={addToCartHandler} >Add to Cart</div>
                     }
                     {followedBooks[book._id]
                         ? <div className='btn follow-btn followed-btn' onClick={followBookHandler} >Unfollow</div>

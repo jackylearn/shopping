@@ -17,6 +17,7 @@ export const login = (name, password) => async (dispatch, getState) => {
                 : err.message
         })
     }
+
 }
 
 export const logout = () => async (dispatch, getState) => {
@@ -54,4 +55,13 @@ export const register = (name, password) => async (dispatch, getState) => {
                 : err.message
         })
     }
+}
+
+export const updatePurchasedBooks = () => async (dispatch, getState) => {
+    const userId = getState().auth.data.id
+    const { data } = await axios.get(`/api/user/${userId}`)
+    dispatch({
+        type: actionTypes.UPDATE_PURCHASED_BOOKS,
+        payload: data.purchased
+    })
 }

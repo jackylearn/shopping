@@ -9,12 +9,13 @@ import axios from 'axios'
 export default function SuccessScreen({ history }) {
 
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.auth.data.id)
+    const userId = useSelector(state => state.auth.data?.id)
     const purchasedBooks = Object.keys(useSelector(state => state.cart))
     console.log(purchasedBooks)
 
     useEffect(() => {
-        axios.put(`/api/user/${userId}/purchasedBooks`, { purchasedBooks })
+        if (userId)
+            axios.put(`/api/user/${userId}/purchasedBooks`, { purchasedBooks })
         dispatch(resetCart())
     }, [history]);
 

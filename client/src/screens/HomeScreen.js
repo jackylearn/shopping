@@ -5,8 +5,12 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getBooks as listBooks } from '../redux/actions/bookActions.js'
+import { updatePurchasedBooks } from '../redux/actions/authActions.js'
 
 export default function HomeScreen() {
+    const loginStatus = useSelector(state => state.auth.login)
+    const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks)
+
 
     const dispatch = useDispatch();
     const getBooks = useSelector(state => state.getBooks)
@@ -18,6 +22,12 @@ export default function HomeScreen() {
         dispatch(listBooks())
     }, [dispatch])
 
+    useEffect(() => {
+        if (!loginStatus) return
+        dispatch(updatePurchasedBooks())
+
+    }, [loginStatus])
+
     return (
         <div className='home-screen'>
             <h2 className='screen-title'>Home</h2>
@@ -27,7 +37,7 @@ export default function HomeScreen() {
                     : error
                         ? <h2>{error}</h2>
                         : books.map(book => (
-                            <Book key={book._id} item={book} />
+                            <Book key={book._id} item={book} purchased={purchasedBooks[book._id] || false} />
                         ))
                 }
             </div>

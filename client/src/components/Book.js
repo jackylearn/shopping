@@ -7,7 +7,7 @@ import { followBook, followBookCancel } from '../redux/actions/bookActions.js'
 import { openLoginModal } from '../redux/actions/modalActions.js'
 import { addToCart, removeFromCart } from '../redux/actions/cartActions.js'
 
-export default function Book({ item }) {
+export default function Book({ item, purchased }) {
     const followedBooks = useSelector(state => state.followedBooks)
     const cartItems = useSelector(state => state.cart)
     const loginStatus = useSelector(state => state.auth.login)
@@ -24,6 +24,7 @@ export default function Book({ item }) {
     }
 
     const addToCartHandler = () => {
+        if (loginStatus && purchased) return
         document.getElementById(`${item._id}-cart`).classList.toggle('in-cart')
         if (!cartItems[item._id])
             dispatch(addToCart(item._id))
@@ -44,12 +45,16 @@ export default function Book({ item }) {
                             icon={['fas', 'heart']}
                             id={`${item._id}-btn`}
                             className={followedBooks[item._id] ? 'follow-icon followed' : 'follow-icon'}
-                            onClick={followBookHandler} />
+                            onClick={followBookHandler}
+                            title={followedBooks[item._id] ? 'Unfollow' : 'Follow'}
+                        />
+
                         <FontAwesomeIcon
                             icon={["fas", "shopping-cart"]}
                             id={`${item._id}-cart`}
-                            className={cartItems[item._id] ? 'cart-icon in-cart' : 'cart-icon'}
+                            className={purchased ? 'cart-icon purchased' : cartItems[item._id] ? 'cart-icon in-cart' : 'cart-icon'}
                             onClick={addToCartHandler}
+                            title={purchased ? 'Already purchased' : 'Add to cart'}
                         />
                     </span>
                 </p>

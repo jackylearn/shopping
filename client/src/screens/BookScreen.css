@@ -46,12 +46,18 @@
     background-color: var(--follow-btn-color);
 }
 
-.in-cart-btn {
+.in-cart-btn,
+.followed-btn {
     background-color: #888;
 }
 
-.followed-btn {
-    background-color: #888
+
+.purchased-btn,
+.purchased-btn:hover {
+    background-color: #888;
+    cursor: default;
+    opacity: 1;
+    box-shadow:none;
 }
 
 @media (max-width:600px) {

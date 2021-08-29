@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants/authConstants.js'
 
-export const authReducer = (state = { user: "", login: false }, action) => {
+export const authReducer = (state = { login: false }, action) => {
     switch (action.type) {
         case actionTypes.LOGIN_SUCCESS:
         case actionTypes.REGISTER_SUCCESS:
@@ -23,7 +23,11 @@ export const authReducer = (state = { user: "", login: false }, action) => {
                 error: action.payload
             }
 
-
+        case actionTypes.UPDATE_PURCHASED_BOOKS:
+            return {
+                ...state,
+                data: { ...state.data, purchasedBooks: action.payload }
+            }
 
         default:
             return state

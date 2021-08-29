@@ -44,3 +44,10 @@
     color: var(--follow-btn-color);
 }
 
+.purchased,
+.purchased:hover {
+    color: #666;
+    cursor:default;
+}
+
+
