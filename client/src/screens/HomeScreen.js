@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getBooks as listBooks } from '../redux/actions/bookActions.js'
 
-export default function HomeScreen(props) {
+export default function HomeScreen() {
 
     const dispatch = useDispatch();
     const getBooks = useSelector(state => state.getBooks)

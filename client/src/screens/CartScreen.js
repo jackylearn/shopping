@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 
 
 
-export default function CartScreen(props) {
+export default function CartScreen() {
 
     const cartItems = useSelector(state => state.cart)
     const itemsId = Object.keys(cartItems)

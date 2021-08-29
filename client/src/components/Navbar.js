@@ -7,7 +7,7 @@ import { logout } from '../redux/actions/authActions.js'
 
 import { Link } from 'react-router-dom'
 
-export default function Navbar(props) {
+export default function Navbar({ loginButton, registerButton, showCartPreview, showSideDrawer }) {
 
     const { login: loginStatus, data } = useSelector(state => state.auth)
     const cartItems = Object.keys(useSelector(state => state.cart))
@@ -28,19 +28,19 @@ export default function Navbar(props) {
                     </>
                     :
                     <>
-                        <span onClick={props.loginButton}>Login</span>
-                        <span onClick={props.registerButton}>Register</span>
+                        <span onClick={loginButton}>Login</span>
+                        <span onClick={registerButton}>Register</span>
                     </>
                 }
 
 
-                <div id="cart-container" onClick={props.showCartPreview}>
+                <div id="cart-container" onClick={showCartPreview}>
                     <FontAwesomeIcon icon={["fas", "shopping-cart"]} />
                     <span>Cart</span>
                     <span id="cart-count">{cartItems.length}</span>
                 </div>
             </div>
-            <div id="menu" onClick={props.showSideDrawer}>
+            <div id="menu" onClick={showSideDrawer}>
                 <div></div>
                 <div></div>
                 <div></div>

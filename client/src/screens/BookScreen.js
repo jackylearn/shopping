@@ -6,7 +6,7 @@ import { followBook, followBookCancel } from '../redux/actions/bookActions.js'
 import { addToCart, removeFromCart } from '../redux/actions/cartActions.js'
 import { openLoginModal } from '../redux/actions/modalActions.js'
 
-export default function BookScreen({ match, history }) {
+export default function BookScreen({ match }) {
 
     const loginStatus = useSelector(state => state.auth.login)
     const followedBooks = useSelector(state => state.followedBooks)

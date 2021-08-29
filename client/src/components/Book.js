@@ -7,7 +7,7 @@ import { followBook, followBookCancel } from '../redux/actions/bookActions.js'
 import { openLoginModal } from '../redux/actions/modalActions.js'
 import { addToCart, removeFromCart } from '../redux/actions/cartActions.js'
 
-export default function Book(props) {
+export default function Book({ item }) {
     const followedBooks = useSelector(state => state.followedBooks)
     const cartItems = useSelector(state => state.cart)
     const loginStatus = useSelector(state => state.auth.login)
@@ -16,48 +16,48 @@ export default function Book(props) {
 
     const followBookHandler = () => {
         if (!loginStatus) return dispatch(openLoginModal())
-        document.getElementById(`${props.item._id}-btn`).classList.toggle('followed')
-        if (!followedBooks[props.item._id])
-            dispatch(followBook(props.item._id))
+        document.getElementById(`${item._id}-btn`).classList.toggle('followed')
+        if (!followedBooks[item._id])
+            dispatch(followBook(item._id))
         else
-            dispatch(followBookCancel(props.item._id))
+            dispatch(followBookCancel(item._id))
     }
 
     const addToCartHandler = () => {
-        document.getElementById(`${props.item._id}-cart`).classList.toggle('in-cart')
-        if (!cartItems[props.item._id])
-            dispatch(addToCart(props.item._id))
+        document.getElementById(`${item._id}-cart`).classList.toggle('in-cart')
+        if (!cartItems[item._id])
+            dispatch(addToCart(item._id))
         else
-            dispatch(removeFromCart(props.item._id))
+            dispatch(removeFromCart(item._id))
     }
 
     return (
         <div className='book'>
-            <img src={props.item.imageUrl} alt={props.item.name} />
+            <img src={item.imageUrl} alt={item.name} />
 
             <div className='book-info'>
                 <p className='info-name'>
-                    <span>{props.item.title}</span>
-                    <span className='author'>{props.item.author}</span>
+                    <span>{item.title}</span>
+                    <span className='author'>{item.author}</span>
                     <span>
                         <FontAwesomeIcon
                             icon={['fas', 'heart']}
-                            id={`${props.item._id}-btn`}
-                            className={followedBooks[props.item._id] ? 'follow-icon followed' : 'follow-icon'}
+                            id={`${item._id}-btn`}
+                            className={followedBooks[item._id] ? 'follow-icon followed' : 'follow-icon'}
                             onClick={followBookHandler} />
                         <FontAwesomeIcon
                             icon={["fas", "shopping-cart"]}
-                            id={`${props.item._id}-cart`}
-                            className={cartItems[props.item._id] ? 'cart-icon in-cart' : 'cart-icon'}
+                            id={`${item._id}-cart`}
+                            className={cartItems[item._id] ? 'cart-icon in-cart' : 'cart-icon'}
                             onClick={addToCartHandler}
                         />
                     </span>
                 </p>
-                <p className='info-description'>{props.item.description.slice(0, 100) + "..."}</p>
-                <p className='price'>Rent for 30 days: {props.item.price} {props.item.currency}</p>
+                <p className='info-description'>{item.description.slice(0, 100) + "..."}</p>
+                <p className='price'>Rent for 30 days: {item.price} {item.currency}</p>
             </div>
 
-            <Link to={`/book/${props.item._id}`} className='info-button btn'>View Detail</Link>
+            <Link to={`/book/${item._id}`} className='info-button btn'>View Detail</Link>
         </div>
     )
 }

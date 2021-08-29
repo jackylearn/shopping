@@ -6,7 +6,7 @@ import './Modal.css'
 import { login, register } from '../redux/actions/authActions.js'
 
 
-export default function Modal(props) {
+export default function Modal({ name, closeAll, status, handleFormSwitch, message, link }) {
 
     // private state for component only
     const [passwordVisibility, setPwdVisibility] = useState(false)
@@ -20,19 +20,19 @@ export default function Modal(props) {
     // public state 
     const dispatch = useDispatch();
     const modalSubmitHandler = () => {
-        if (props.name === "Login")
+        if (name === "Login")
             dispatch(login(username, password))
         else
             dispatch(register(username, password))
 
-        props.closeAll()
+        closeAll()
         setUserName("")
         setPassword("")
     }
 
     return (
-        <div id={props.name.toLowerCase()} className={props.status ? "modal active" : "modal"} >
-            <h2 className="modal-title">{props.name}</h2>
+        <div id={name.toLowerCase()} className={status ? "modal active" : "modal"} >
+            <h2 className="modal-title">{name}</h2>
             <div className="form">
                 <div className="form-content">
                     <label htmlFor="name">Username</label>
@@ -58,9 +58,9 @@ export default function Modal(props) {
                         <FontAwesomeIcon icon={passwordVisibility ? ['fas', 'eye'] : ['fas', 'eye-slash']} onClick={viewPassword} />
                     </div>
                 </div>
-                <div className="btn modal-btn" onClick={modalSubmitHandler}>{props.name}</div>
+                <div className="btn modal-btn" onClick={modalSubmitHandler}>{name}</div>
             </div>
-            <p>{props.message}  <a href='#' onClick={props.handleFormSwitch}>{props.link}</a></p>
+            <p>{message}  <a href='#' onClick={handleFormSwitch}>{link}</a></p>
         </div>
 
     )

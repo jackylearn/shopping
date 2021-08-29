@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../redux/actions/cartActions.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function BookPreview(props) {
+export default function BookPreview({ itemId }) {
 
     const dispatch = useDispatch();
-    const deleteItemHandler = () => dispatch(removeFromCart(props.itemId))
+    const deleteItemHandler = () => dispatch(removeFromCart(itemId))
 
-    const cartItem = useSelector(state => state.cart)[props.itemId]
+    const cartItem = useSelector(state => state.cart)[itemId]
 
     return (
         <div className='book-preview'>
