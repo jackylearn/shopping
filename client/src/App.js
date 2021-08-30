@@ -13,7 +13,7 @@ import BooksScreen from './screens/BookScreen.js'
 import SuccessScreen from './screens/SuccessScreen.js';
 import PurchaseScreen from './screens/PurchaseScreen.js'
 
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute.js'
 
 import { openLoginModal, closeLoginModal, openRegisterModal, closeRegisterModal } from './redux/actions/modalActions.js'
