@@ -9,7 +9,7 @@ import { updatePurchasedBooks } from '../redux/actions/authActions.js'
 
 export default function HomeScreen() {
     const loginStatus = useSelector(state => state.auth.login)
-    const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks)
+    const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks) || {}
 
 
     const dispatch = useDispatch();
@@ -20,13 +20,12 @@ export default function HomeScreen() {
         // prevent fetch data from backend again
         if (books?.length > 0) return
         dispatch(listBooks())
-    }, [dispatch])
+    }, [])
 
     useEffect(() => {
         if (!loginStatus) return
         dispatch(updatePurchasedBooks())
-
-    }, [loginStatus])
+    }, [])
 
     return (
         <div className='home-screen'>
