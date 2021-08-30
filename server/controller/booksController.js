@@ -1,4 +1,5 @@
 const Books = require('../model/book.js')
+const Users = require('../model/user.js')
 
 const getAllBooks = async (req, res) => {
     try {
@@ -20,7 +21,24 @@ const getBookById = async (req, res) => {
     }
 }
 
+const getBookContentById = async (req, res) => {
+    const userId = req.query.userId
+    const bookId = req.params.id
+    try {
+        const user = await Users.findById(userId).exec()
+        if (!user.purchased.get(bookId) || !user.purchased.get(bookId) > Date.now())
+            throw new Error(`Book may be expires`)
+
+        res.send(`user ${userId} try to get book ${bookId}`)
+
+    } catch (err) {
+        res.send({ error: err.message })
+    }
+}
+
+
 module.exports = {
     getBookById,
     getAllBooks,
+    getBookContentById,
 }
