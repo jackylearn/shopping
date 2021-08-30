@@ -16,7 +16,7 @@ export default function BookPreview({ itemId }) {
                 <img src={cartItem?.imageUrl} alt={cartItem?.title} />
             </div>
             <div className='preview-info'>
-                <p>{cartItem?.title}</p>
+                <p>{cartItem?.title.length > 20 ? cartItem?.title.slice(0, 20) + '...' : cartItem?.title}</p>
                 <p>{cartItem?.author}</p>
                 <p>{cartItem?.price} {cartItem?.currency}</p>
             </div>

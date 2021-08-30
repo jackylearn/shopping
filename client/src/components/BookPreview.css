@@ -2,13 +2,26 @@
     display: grid;
     grid-template-columns: auto 3fr 1fr;
     grid-gap: 1em;
-    place-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .preview-img {
     grid-area: 1/1/4/2;
 }
 
+.preview-info {
+    height: 100%;
+    grid-area: 1/2/4/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.preview-info > p {
+    max-width: 110px;
+    word-wrap: break-word;
+}
 
 
 .preview-img > img {
