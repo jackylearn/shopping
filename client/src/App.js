@@ -11,14 +11,17 @@ import CartScreen from './screens/CartScreen.js'
 import HomeScreen from './screens/HomeScreen.js'
 import BooksScreen from './screens/BookScreen.js'
 import SuccessScreen from './screens/SuccessScreen.js';
+import PurchaseScreen from './screens/PurchaseScreen.js'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import PrivateRoute from './components/PrivateRoute.js'
 
 import { openLoginModal, closeLoginModal, openRegisterModal, closeRegisterModal } from './redux/actions/modalActions.js'
 
 function App() {
   const dispatch = useDispatch();
   const { login: isLoginModalShown, register: isRegisterModalShown } = useSelector(state => state.modal)
+  const loginStatus = useSelector(state => state.auth.login)
   const [isCartPreviewShown, setCartPreview] = useState(false)
   const [isSideDrawerShown, setSideDrawer] = useState(false)
 
@@ -89,7 +92,8 @@ function App() {
             <Route exact path="/" component={HomeScreen} />
             <Route exact path="/book/:id" component={BooksScreen} />
             <Route exact path="/cart" component={CartScreen} />
-            <Route exact path="/success" component={SuccessScreen} />
+            <PrivateRoute exact path="/success" loginStatus={loginStatus} component={SuccessScreen} />
+            <PrivateRoute exact path="/user" loginStatus={loginStatus} component={PurchaseScreen} />
           </Switch>
 
         </main>
