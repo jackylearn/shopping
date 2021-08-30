@@ -11,13 +11,15 @@ export default function BookScreen({ match }) {
     const loginStatus = useSelector(state => state.auth.login)
     const followedBooks = useSelector(state => state.followedBooks)
     const booksInCart = useSelector(state => state.cart)
-    const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks)
+    const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks) || {}
 
     const dispatch = useDispatch();
     const book = useSelector(state => state.getBooks.books).filter(book => book._id === match.params.id)[0]
     const purchased = purchasedBooks[book._id] > Date.now() || false
 
     const addToCartHandler = () => {
+        if (!loginStatus) return dispatch(openLoginModal())
+
         document.querySelector(".add-cart-btn").classList.toggle('in-cart-btn')
         if (!booksInCart[book._id])
             dispatch(addToCart(book._id))

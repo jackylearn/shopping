@@ -24,6 +24,8 @@ export default function Book({ item, purchased }) {
     }
 
     const addToCartHandler = () => {
+        if (!loginStatus) return dispatch(openLoginModal())
+
         if (loginStatus && purchased) return
         document.getElementById(`${item._id}-cart`).classList.toggle('in-cart')
         if (!cartItems[item._id])
@@ -58,7 +60,7 @@ export default function Book({ item, purchased }) {
                         />
                     </span>
                 </p>
-                <p className='info-description'>{item.description.slice(0, 100) + "..."}</p>
+                <p className='info-description'>{item.description.length > 100 ? item.description.slice(0, 100) + "..." : item.description}</p>
                 <p className='price'>Rent for 30 days: {item.price} {item.currency}</p>
             </div>
 
