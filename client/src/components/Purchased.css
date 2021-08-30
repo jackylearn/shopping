@@ -1,0 +1,33 @@
+.purchased-view {
+    display: grid;
+    grid-template-columns: auto 4fr 1fr;
+    grid-gap: 0.3rem 1rem;
+    padding: 0.5rem;
+    place-items: center;
+    background-color: white;
+    margin: 0.8rem;
+    border-radius: 8px;
+    height: 96px;
+    width: 90vw;
+}
+
+.expires-urgent{
+    color: var(--danger-color);
+}
+
+.purchased-view > img {
+    height: 80px;
+}
+
+.purchased-book-info{
+    margin-top: 0.3rem;
+}
+
+.purchased-book-info > span {
+    margin: 1rem;
+}
+
+.read-btn {
+    margin-right: 1rem;
+    border-radius: 10px;
+}
