@@ -1,9 +1,20 @@
 import './Purchased.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getBookContent } from '../redux/actions/bookActions.js'
 
 export default function Purchased({ itemId }) {
+    const dispatch = useDispatch()
+
+
     const bookInfo = useSelector(state => state.getBooks.books).filter(book => book._id === itemId)[0]
     const expires = useSelector(state => state.auth.data.purchasedBooks)[itemId] - Date.now()
+    const content = useSelector(state => state.content)
+
+    const readerHandler = () => {
+        dispatch(getBookContent(itemId))
+    }
+
 
     return (
         <div className='purchased-view'>
@@ -17,7 +28,7 @@ export default function Purchased({ itemId }) {
                         : <p className='expires-urgent'>{`Expires in ${Math.floor(expires / 1000 / 3600)} hours`}</p>
                 }
             </div>
-            <div className='btn read-btn'>Read</div>
+            <div className='btn read-btn' onClick={readerHandler}>Read</div>
         </div>
     )
 }

@@ -77,3 +77,26 @@ export const followBookCancel = (id) => (dispatch, getState) => {
     const userId = getState().auth.data.id
     axios.put(`/api/user/${userId}/followedBooks`, { followedBooks: [id, false] })
 }
+
+export const getBookContent = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: actionTypes.GET_BOOK_CONTENT_REQUEST
+        })
+
+        const userId = getState().auth.data.id
+        const { data } = await axios.get(`/api/books/viewer/${id}?userId=${userId}`)
+
+        dispatch({
+            type: actionTypes.GET_BOOK_CONTENT_SUCCESS,
+            payload: data
+        })
+    } catch (err) {
+        dispatch({
+            type: actionTypes.GET_BOOK_CONTENT_FAILURE,
+            payload: err.response && err.response.data.message
+                ? err.response.data.message
+                : err.message
+        })
+    }
+}

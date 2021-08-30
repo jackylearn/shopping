@@ -67,3 +67,26 @@ export const followBookReducer = (state = {}, action) => {
             return state
     }
 }
+
+export const getBookContentReducer = (state = {}, action) => {
+    switch (action.type) {
+        case actionTypes.GET_BOOK_CONTENT_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case actionTypes.GET_BOOK_CONTENT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+            }
+        case actionTypes.GET_BOOK_CONTENT_FAILURE:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+}
