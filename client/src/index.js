@@ -10,8 +10,6 @@ import store from './redux/store.js';
 // fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-// icon for famous company e.g. apple, facebook, google
-// import { fab } from '@fortawesome/free-brands-svg-icons'
 // other icons will be used 
 import { faShoppingCart, faEye, faEyeSlash, faHeart, faTrash } from '@fortawesome/free-solid-svg-icons'
 
