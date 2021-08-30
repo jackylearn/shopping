@@ -22,8 +22,12 @@ export default function Navbar({ loginButton, registerButton, showCartPreview, s
                 {loginStatus
                     ?
                     <>
-                        <p>{data.message}</p>
-                        <p>{data.user || ""}</p>
+                        <span>
+                            <Link to="/user" id="user">
+                                <span>{data.message}</span>
+                                <span>{data.user || ""}</span>
+                            </Link>
+                        </span>
                         <span onClick={logoutHandler}>Log Out</span>
                     </>
                     :

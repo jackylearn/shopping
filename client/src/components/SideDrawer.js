@@ -13,7 +13,7 @@ export default function SideDrawer({ closeAll, status, loginButton, registerButt
         closeAll()
     }
 
-    const loginStatus = useSelector(state => state.auth.login)
+    const { login: loginStatus, data } = useSelector(state => state.auth)
     const cartItems = useSelector(state => state.cart)
     const itemsId = Object.keys(cartItems)
 
@@ -21,7 +21,14 @@ export default function SideDrawer({ closeAll, status, loginButton, registerButt
         <div id="side-drawer" className={status ? 'side-drawer-active' : 'side-drawer-hidden'}>
 
             {loginStatus
-                ? <div onClick={logoutHandler}>Log Out</div>
+                ? <>
+                    <h2>
+                        <Link to='/user' onClick={closeAll}>
+                            {`Hi! ${data.user}`}
+                        </Link>
+                    </h2>
+                    <div onClick={logoutHandler}>Log Out</div>
+                </>
                 : <>
                     <div onClick={loginButton}>Login</div>
                     <div onClick={registerButton}>Register</div>
