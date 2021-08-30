@@ -1,3 +1,12 @@
 #back-to-shop, #back-to-shop:visited {
     color: var(--link-color);
   }
+
+.success-screen {
+  text-align: center;
+}
+
+.success-screen > * {
+  margin: 1rem;
+  font-size: 1.5em;
+}
