@@ -62,3 +62,7 @@
     color: var(--danger-color);
     margin-top: 0.5rem;
   }
+  .modal-switch{
+    color: var(--link-color);
+    cursor: pointer;
+  }

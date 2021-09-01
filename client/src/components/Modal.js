@@ -34,9 +34,9 @@ export default function Modal({ name, closeAll, status, handleFormSwitch, messag
         if (!document) return
         if (loginStatus) return closeAll()
         if (isLoginModalShown)
-            document.querySelector('#login .auth-message').innerText = error
+            document.querySelector('#login .auth-message').innerText = error || ""
         else if (isRegisterModalShown)
-            document.querySelector('#register .auth-message').innerText = error
+            document.querySelector('#register .auth-message').innerText = error || ""
         return () => {
             document.querySelector('#login .auth-message').innerText = ""
             document.querySelector('#register .auth-message').innerText = ""
@@ -75,7 +75,7 @@ export default function Modal({ name, closeAll, status, handleFormSwitch, messag
                 </div>
                 <div className="btn modal-btn" onClick={modalSubmitHandler}>{name}</div>
             </div>
-            <p>{message}  <a href='#' onClick={handleFormSwitch}>{link}</a></p>
+            <p>{message}  <span className="modal-switch" onClick={handleFormSwitch}>{link}</span></p>
         </div>
 
     )
