@@ -40,7 +40,6 @@
     "mongodb": "^4.1.0",
     "mongoose": "^5.13.7",
     "passport": "^0.4.1",
-    "passport-google-oauth2": "^0.2.0",
     "passport-local": "^1.0.0",
     "stripe": "^8.170.0"
   },

@@ -30,7 +30,6 @@ module.exports = async function checkout(req, res) {
         const session = await stripe.checkout.sessions.create(sessionRequirement)
         res.json({ paymentUrl: session.url })
     } catch (err) {
-        console.log('oop')
         res.status(500).json({ error: err.message })
     }
 

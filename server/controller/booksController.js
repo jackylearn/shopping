@@ -6,7 +6,6 @@ const getAllBooks = async (req, res) => {
         const books = await Books.find({})
         res.json(books)
     } catch (err) {
-        console.error(err)
         res.status(500).json({ message: "Server Error" })
     }
 }
@@ -16,7 +15,6 @@ const getBookById = async (req, res) => {
         const book = await Books.findById(req.params.id)
         res.json(book)
     } catch (err) {
-        console.error(err)
         res.status(500).json({ message: "Server Error" })
     }
 }
