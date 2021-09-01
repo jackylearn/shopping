@@ -21,10 +21,9 @@ export default function CartScreen() {
     }
 
     useEffect(() => {
-        if (checkoutUrl) {
+        if (checkoutUrl)
             window.location = checkoutUrl
-            // dispatch(resetCart())
-        }
+
     }, [checkoutUrl])
 
     return (
