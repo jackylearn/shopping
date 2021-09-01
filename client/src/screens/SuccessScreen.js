@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetCart } from '../redux/actions/cartActions.js'
 import axios from 'axios'
+import { updatePurchasedBooks } from '../redux/actions/authActions.js'
 
 
 
@@ -17,11 +18,16 @@ export default function SuccessScreen({ history }) {
     useEffect(() => {
         if (userId)
             axios.put(`/api/user/${userId}/purchasedBooks`, { purchasedBooks })
+                .then(() => dispatch(updatePurchasedBooks()))
         dispatch(resetCart())
     }, []);
 
     useEffect(() => {
-        setTimeout(() => { window.location.replace('/') }, 5000)
+        // history.push rather than window.location.replace to prevent new http request
+        const redirect = setTimeout(() => history.push('/'), 5000)
+        return () => {
+            clearTimeout(redirect)
+        }
     })
 
     useEffect(() => {

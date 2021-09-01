@@ -5,26 +5,17 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getBooks as listBooks } from '../redux/actions/bookActions.js'
-import { updatePurchasedBooks } from '../redux/actions/authActions.js'
 
 export default function HomeScreen() {
-    const loginStatus = useSelector(state => state.auth.login)
     const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks) || {}
 
-
     const dispatch = useDispatch();
-    const getBooks = useSelector(state => state.getBooks)
-    const { books, loading, error } = getBooks;
+    const { books, loading, error } = useSelector(state => state.getBooks)
 
     useEffect(() => {
         // prevent fetch data from backend again
         if (books?.length > 0) return
         dispatch(listBooks())
-    }, [])
-
-    useEffect(() => {
-        if (!loginStatus) return
-        dispatch(updatePurchasedBooks())
     }, [])
 
     return (
