@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension"
 
 // reducers
 import { cartReducer, checkoutReducer } from './reducers/cartReducers.js'
-import { getBooksReducer, getBookDetailsReducer, followBookReducer, getBookContentReducer } from './reducers/bookReducers.js'
+import { getBooksReducer, getBookDetailsReducer, followBookReducer } from './reducers/bookReducers.js'
 import { authReducer } from './reducers/authReducers.js'
 import { modalReducer } from './reducers/modalReducers.js'
 
@@ -16,7 +16,6 @@ const reducer = combineReducers({
     followedBooks: followBookReducer,
     auth: authReducer,
     modal: modalReducer,
-    content: getBookContentReducer,
 })
 
 const middleware = [thunk]
