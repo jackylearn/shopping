@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Modal.css'
 
@@ -18,21 +18,36 @@ export default function Modal({ name, closeAll, status, handleFormSwitch, messag
     const passwordHandler = event => setPassword(event.target.value)
 
     // public state 
+    const { login: loginStatus, error } = useSelector(state => state.auth)
+    const { login: isLoginModalShown, register: isRegisterModalShown } = useSelector(state => state.modal)
     const dispatch = useDispatch();
     const modalSubmitHandler = () => {
         if (name === "Login")
             dispatch(login(username, password))
         else
             dispatch(register(username, password))
-
-        closeAll()
         setUserName("")
         setPassword("")
     }
 
+    useEffect(() => {
+        if (!document) return
+        if (loginStatus) return closeAll()
+        if (isLoginModalShown)
+            document.querySelector('#login .auth-message').innerText = error
+        else if (isRegisterModalShown)
+            document.querySelector('#register .auth-message').innerText = error
+        return () => {
+            document.querySelector('#login .auth-message').innerText = ""
+            document.querySelector('#register .auth-message').innerText = ""
+        }
+
+    }, [loginStatus])
+
     return (
         <div id={name.toLowerCase()} className={status ? "modal active" : "modal"} >
             <h2 className="modal-title">{name}</h2>
+            <p className="auth-message"></p>
             <div className="form">
                 <div className="form-content">
                     <label htmlFor="name">Username</label>
@@ -48,14 +63,14 @@ export default function Modal({ name, closeAll, status, handleFormSwitch, messag
                 <div className="form-content">
                     <label htmlFor="password">Password</label>
                     <input
-                        type={passwordVisibility ? 'password' : 'text'}
+                        type={passwordVisibility ? 'text' : 'password'}
                         name='password'
                         placeholder='password'
                         onChange={passwordHandler}
                         value={password}
                         required />
                     <div className="visibility">
-                        <FontAwesomeIcon icon={passwordVisibility ? ['fas', 'eye'] : ['fas', 'eye-slash']} onClick={viewPassword} />
+                        <FontAwesomeIcon icon={passwordVisibility ? ['fas', 'eye-slash'] : ['fas', 'eye']} onClick={viewPassword} />
                     </div>
                 </div>
                 <div className="btn modal-btn" onClick={modalSubmitHandler}>{name}</div>

@@ -58,3 +58,7 @@
     color: var(--link-color);
   }
   
+  .auth-message{
+    color: var(--danger-color);
+    margin-top: 0.5rem;
+  }
