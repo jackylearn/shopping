@@ -34,7 +34,7 @@ export default function SuccessScreen({ history }) {
 
     return (
         <div className='success-screen'>
-            <h2>payment success</h2>
+            <h2>Payment Success</h2>
             <p>{`${timeLeft} secs redirects to shop`}</p>
             <Link id='back-to-shop' to={'/'} > Back to shop </Link>
         </div>
