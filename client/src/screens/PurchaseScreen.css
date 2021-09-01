@@ -2,3 +2,7 @@
     text-align: center;
     border-bottom:  1px solid #555;
 }
+
+.purchase-screen > h2 {
+    margin: 2rem;
+}
