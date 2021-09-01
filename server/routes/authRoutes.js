@@ -1,4 +1,3 @@
-const path = require('path')
 const passport = require('passport')
 const createUser = require('../controller/createUser.js')
 const express = require('express')
@@ -7,20 +6,16 @@ const router = express.Router()
 
 const returnToFrontEnd = async (req, res) => {
     const successMsg = await req.consumeFlash('success')
-    const errorMsg = await req.consumeFlash('error')
     if (successMsg && req.isAuthenticated())
         res.json({ message: successMsg[0], user: req.user.name, id: req.user._id })
-    else if (successMsg)
-        res.json({ message: successMsg[0] })
+
+    // logout
     else
-        res.json({ message: errorMsg[0] })
+        res.json({ message: successMsg[0] })
 }
-
-
 
 router.post('/login', passport.authenticate('local', {
     successFlash: 'Welcome!',
-    failureFlash: 'Invalid username or password.',
 }), returnToFrontEnd)
 
 router.post('/register', async (req, res, next) => {
@@ -29,15 +24,12 @@ router.post('/register', async (req, res, next) => {
         console.log(`New user ${req.body.name} try to register`)
         next(null, newUser)
     } catch (err) {
-        res.json({ message: 'duplicate username' })
+        res.json({ error: 'Duplicate username' })
     }
 },
-    passport.authenticate('local',
-        {
-            successFlash: 'Welcome!',
-            failureFlash: 'Invalid username or password.',
-        }
-    ),
+    passport.authenticate('local', {
+        successFlash: 'Welcome!'
+    }),
     returnToFrontEnd
 )
 
@@ -47,16 +39,6 @@ router.get('/logout', (req, res, next) => {
     req.flash('success', 'Goodbye!')
     next()
 }, returnToFrontEnd)
-
-
-
-// router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
-
-// router.get('/auth/google/callback',
-//      passport.authenticate('google', {
-//         successRedirect: '/',
-//         failureRedirect: '/'
-//     }))
 
 
 module.exports = router
