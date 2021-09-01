@@ -1,6 +1,6 @@
 {
   "name": "shoppingcart",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "backend shopping cart project",
   "main": "server.js",
   "scripts": {
@@ -18,9 +18,10 @@
   "keywords": [
     "passport",
     "react",
-    "payment",
+    "stripe",
     "shopping",
-    "cart"
+    "cart",
+    "docker"
   ],
   "author": "Jacky",
   "license": "MIT",
