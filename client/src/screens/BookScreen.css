@@ -24,8 +24,11 @@
     height: fit-content;
 }
 
-.left-info > p:not(:last-child) {
+.left-info > p {
     padding: 0.3rem;
+}
+
+.left-info > p:not(:last-child) {
     border-bottom: 1px solid #999;
 }
 
