@@ -1,20 +1,18 @@
 import './Purchased.css'
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { getBookContent } from '../redux/actions/bookActions.js'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 export default function Purchased({ itemId }) {
-    const dispatch = useDispatch()
 
-
+    const { id: userId } = useSelector(state => state.auth.data)
     const bookInfo = useSelector(state => state.getBooks.books).filter(book => book._id === itemId)[0]
     const expires = useSelector(state => state.auth.data.purchasedBooks)[itemId] - Date.now()
-    const content = useSelector(state => state.content)
 
-    const readerHandler = () => {
-        dispatch(getBookContent(itemId))
+    const readerHandler = async () => {
+        const { data } = await axios.get(`/api/books/viewer/${itemId}?userId=${userId}`)
+        const { success, error } = data
+        success ? alert(success) : alert(error)
     }
-
 
     return (
         <div className='purchased-view'>

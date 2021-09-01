@@ -10,6 +10,9 @@
     height: 96px;
     width: 90vw;
 }
+.expires {
+    margin: 0.5rem;
+}
 
 .expires-urgent{
     color: var(--danger-color);
