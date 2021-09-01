@@ -26,10 +26,12 @@ const getBookContentById = async (req, res) => {
     const bookId = req.params.id
     try {
         const user = await Users.findById(userId).exec()
-        if (!user.purchased.get(bookId) || !user.purchased.get(bookId) > Date.now())
-            throw new Error(`Book may be expires`)
+        if (!user.purchased.get(bookId))
+            throw new Error('You are trying to see a book you have not purchased yet.')
+        if (user.purchased.get(bookId) < Date.now())
+            throw new Error(`Book may be expires.`)
 
-        res.send(`user ${userId} try to get book ${bookId}`)
+        res.send({ success: `User ${userId} try to get book ${bookId}.` })
 
     } catch (err) {
         res.send({ error: err.message })
