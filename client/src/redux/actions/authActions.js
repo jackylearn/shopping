@@ -26,6 +26,7 @@ export const logout = () => async (dispatch, getState) => {
         payload: data
     })
     localStorage.setItem('user', JSON.stringify(getState().auth))
+    localStorage.removeItem('cart')
 }
 
 export const register = (name, password) => async (dispatch, getState) => {
