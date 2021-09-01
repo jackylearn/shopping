@@ -1,0 +1,32 @@
+version: "3"
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 9999:3000
+    networks:
+      - mern-network
+    depends_on:
+      - server
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    networks:
+      - mern-network
+    env_file:
+      - ./server/.env
+    environment:
+      - CLIENT_URL=http://192.168.99.100:9999
+networks:
+  mern-network:
+    driver: bridge
