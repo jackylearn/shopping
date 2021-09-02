@@ -24,10 +24,7 @@ export default function SuccessScreen({ history }) {
 
     useEffect(() => {
         // history.push rather than window.location.replace to prevent new http request
-        const redirect = setTimeout(() => history.push('/'), 5000)
-        return () => {
-            clearTimeout(redirect)
-        }
+        setTimeout(() => history.push('/'), 5000)
     })
 
     useEffect(() => {
