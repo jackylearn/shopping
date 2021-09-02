@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension"
 
 // reducers
 import { cartReducer, checkoutReducer } from './reducers/cartReducers.js'
-import { getBooksReducer, getBookDetailsReducer, followBookReducer } from './reducers/bookReducers.js'
+import { getBooksReducer, getBookDetailsReducer } from './reducers/bookReducers.js'
 import { authReducer } from './reducers/authReducers.js'
 import { modalReducer } from './reducers/modalReducers.js'
 
@@ -13,7 +13,6 @@ const reducer = combineReducers({
     payment: checkoutReducer,
     getBooks: getBooksReducer,
     getBookDetails: getBookDetailsReducer,
-    followedBooks: followBookReducer,
     auth: authReducer,
     modal: modalReducer,
 })
