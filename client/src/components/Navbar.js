@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 //redux actions
 import { logout } from '../redux/actions/authActions.js'
+import { resetFollowBook } from '../redux/actions/bookActions.js'
+import { resetCart } from '../redux/actions/cartActions.js'
 
 import { Link } from 'react-router-dom'
 
@@ -13,7 +15,10 @@ export default function Navbar({ loginButton, registerButton, showCartPreview, s
     const cartItems = Object.keys(useSelector(state => state.cart))
 
     const dispatch = useDispatch();
-    const logoutHandler = () => dispatch(logout())
+    const logoutHandler = () => {
+        dispatch(logout())
+        dispatch(resetCart())
+    }
 
     return (
         <nav id="navbar">
