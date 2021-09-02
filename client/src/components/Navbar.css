@@ -37,6 +37,7 @@ nav > div > span:hover{
   font-size: 24px;
   padding: 0.5rem 1rem;
   color: var(--font-color);
+  font-family: var(--logo-font);
 }
 
 #logo:hover{
