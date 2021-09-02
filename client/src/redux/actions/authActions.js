@@ -7,7 +7,11 @@ export const login = (name, password) => async (dispatch, getState) => {
         const { data: userDetails } = await axios.get(`/api/user/${user.id}`)
         dispatch({
             type: actionTypes.LOGIN_SUCCESS,
-            payload: { ...user, purchasedBooks: userDetails.purchased }
+            payload: {
+                ...user,
+                purchasedBooks: userDetails.purchased,
+                followedBooks: userDetails.follow
+            }
         })
         localStorage.setItem('user', JSON.stringify(getState().auth))
     } catch (err) {
@@ -27,6 +31,7 @@ export const logout = () => async (dispatch, getState) => {
     })
     localStorage.setItem('user', JSON.stringify(getState().auth))
     localStorage.removeItem('cart')
+    localStorage.removeItem('follow')
 }
 
 export const register = (name, password) => async (dispatch, getState) => {
@@ -56,4 +61,25 @@ export const updatePurchasedBooks = () => async (dispatch, getState) => {
         type: actionTypes.UPDATE_PURCHASED_BOOKS,
         payload: data.purchased
     })
+}
+
+export const followBook = (id) => (dispatch, getState) => {
+    dispatch({
+        type: actionTypes.FOLLOW_BOOK,
+        payload: id
+    })
+    localStorage.setItem('follow', JSON.stringify(getState().followedBooks))
+
+    const userId = getState().auth.data.id
+    axios.put(`/api/user/${userId}/followedBooks`, { followedBooks: [id, true] })
+}
+
+export const followBookCancel = (id) => (dispatch, getState) => {
+    dispatch({
+        type: actionTypes.FOLLOW_BOOK_CANCEL,
+        payload: id
+    })
+    localStorage.setItem('follow', JSON.stringify(getState().followedBooks))
+    const userId = getState().auth.data.id
+    axios.put(`/api/user/${userId}/followedBooks`, { followedBooks: [id, false] })
 }

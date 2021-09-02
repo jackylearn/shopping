@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 //redux actions
-import { followBook, followBookCancel } from '../redux/actions/bookActions.js'
+import { followBook, followBookCancel } from '../redux/actions/authActions.js'
 import { openLoginModal } from '../redux/actions/modalActions.js'
 import { addToCart, removeFromCart } from '../redux/actions/cartActions.js'
 
 export default function Book({ item, purchased }) {
-    const followedBooks = useSelector(state => state.followedBooks)
     const cartItems = useSelector(state => state.cart)
     const loginStatus = useSelector(state => state.auth.login)
+    const followedBooks = useSelector(state => state.auth.data?.followedBooks) || {}
 
     const dispatch = useDispatch();
 

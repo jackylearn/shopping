@@ -25,9 +25,28 @@ export const authReducer = (state = { login: false }, action) => {
         case actionTypes.UPDATE_PURCHASED_BOOKS:
             return {
                 ...state,
-                data: { ...state.data, purchasedBooks: action.payload }
+                data: {
+                    ...state.data,
+                    purchasedBooks: action.payload
+                }
             }
-
+        case actionTypes.FOLLOW_BOOK:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    followedBooks: { [action.payload]: true }
+                }
+            }
+        case actionTypes.FOLLOW_BOOK_CANCEL:
+            const { [action.payload]: unfollowedBook, ...rest } = state
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    followedBooks: rest
+                }
+            }
         default:
             return state
     }

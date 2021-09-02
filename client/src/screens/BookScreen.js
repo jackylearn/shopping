@@ -2,16 +2,16 @@ import './BookScreen.css'
 import { useDispatch, useSelector } from 'react-redux'
 
 //redux actions
-import { followBook, followBookCancel } from '../redux/actions/bookActions.js'
+import { followBook, followBookCancel } from '../redux/actions/authActions.js'
 import { addToCart, removeFromCart } from '../redux/actions/cartActions.js'
 import { openLoginModal } from '../redux/actions/modalActions.js'
 
 export default function BookScreen({ match }) {
 
     const loginStatus = useSelector(state => state.auth.login)
-    const followedBooks = useSelector(state => state.followedBooks)
+    const followedBooks = useSelector(state => state.auth.data?.followedBooks) || {}
     const booksInCart = useSelector(state => state.cart)
-    const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks) || {}
+    const purchasedBooks = useSelector(state => state.auth.data?.purchasedBooks) || {}
 
     const dispatch = useDispatch();
     const book = useSelector(state => state.getBooks.books).filter(book => book._id === match.params.id)[0]

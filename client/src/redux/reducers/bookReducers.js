@@ -50,20 +50,3 @@ export const getBookDetailsReducer = (state = { book: {} }, action) => {
 
     }
 }
-
-export const followBookReducer = (state = {}, action) => {
-    // implement Set() in redux takes much work
-    // use normal object instead
-    switch (action.type) {
-        case actionTypes.FOLLOW_BOOK:
-            return {
-                ...state,
-                [action.payload]: true
-            }
-        case actionTypes.FOLLOW_BOOK_CANCEL:
-            const { [action.payload]: unfollowedBook, ...rest } = state
-            return rest
-        default:
-            return state
-    }
-}
