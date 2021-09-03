@@ -6,7 +6,10 @@ export const authReducer = (state = { login: false }, action) => {
         case actionTypes.REGISTER_SUCCESS:
 
             return {
-                data: action.payload,
+                data: {
+                    ...state.data,
+                    ...action.payload
+                },
                 login: true
             }
         case actionTypes.LOGOUT_SUCCESS:
@@ -35,11 +38,14 @@ export const authReducer = (state = { login: false }, action) => {
                 ...state,
                 data: {
                     ...state.data,
-                    followedBooks: { [action.payload]: true }
+                    followedBooks: {
+                        ...state.data.followedBooks,
+                        [action.payload]: true
+                    }
                 }
             }
         case actionTypes.FOLLOW_BOOK_CANCEL:
-            const { [action.payload]: unfollowedBook, ...rest } = state
+            const { [action.payload]: unfollowedBook, ...rest } = state.data.followedBooks
             return {
                 ...state,
                 data: {
