@@ -19,6 +19,7 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    restart: on-failure
     ports:
       - 3001:3001
     networks:
@@ -32,6 +33,7 @@ services:
 
   db:
     image: mongo
+    restart: on-failure
     volumes:
       - data-volume:/data/db
     ports:
