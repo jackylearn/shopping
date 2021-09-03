@@ -68,8 +68,7 @@ export const followBook = (id) => (dispatch, getState) => {
         type: actionTypes.FOLLOW_BOOK,
         payload: id
     })
-    localStorage.setItem('follow', JSON.stringify(getState().followedBooks))
-
+    localStorage.setItem('user', JSON.stringify(getState().auth))
     const userId = getState().auth.data.id
     axios.put(`/api/user/${userId}/followedBooks`, { followedBooks: [id, true] })
 }
@@ -79,7 +78,7 @@ export const followBookCancel = (id) => (dispatch, getState) => {
         type: actionTypes.FOLLOW_BOOK_CANCEL,
         payload: id
     })
-    localStorage.setItem('follow', JSON.stringify(getState().followedBooks))
+    localStorage.setItem('user', JSON.stringify(getState().auth))
     const userId = getState().auth.data.id
     axios.put(`/api/user/${userId}/followedBooks`, { followedBooks: [id, false] })
 }
