@@ -4,6 +4,8 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+    volumes:
+      - client:/client
     ports:
       - 9999:3000
     networks:
@@ -19,6 +21,8 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    volumes:
+      - server:/server
     restart: on-failure
     ports:
       - 3001:3001
@@ -48,3 +52,5 @@ networks:
 volumes:
   data-volume:
     driver: local
+  server:
+  client:
