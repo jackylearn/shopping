@@ -24,9 +24,25 @@ services:
     networks:
       - mern-network
     env_file:
-      - ./server/.env
+      - ./server/.env.production
     environment:
       - CLIENT_URL=http://192.168.99.100:9999
+    depends_on:
+      - db
+
+  db:
+    image: mongo
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - mern-network
+
 networks:
   mern-network:
     driver: bridge
+
+volumes:
+  data-volume:
+    driver: local
