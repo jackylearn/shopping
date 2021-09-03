@@ -2,7 +2,6 @@ const Users = require('../model/user.js')
 
 const updatePurchasedBooks = async (req, res, next) => {
     const purchasedBooks = req.body.purchasedBooks
-    console.log(purchasedBooks)
     const userId = req.params.id
     if (!userId) return next()
 
