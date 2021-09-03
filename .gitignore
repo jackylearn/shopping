@@ -4,3 +4,4 @@ coverage/*
 coverage
 .vscode
 node_modules
+*/build
