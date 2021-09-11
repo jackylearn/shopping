@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getBooks as listBooks } from '../redux/actions/bookActions.js'
 
-export default function HomeScreen() {
+export default function HomeScreen({ history }) {
     const purchasedBooks = useSelector(state => state.auth?.data?.purchasedBooks) || {}
 
     const dispatch = useDispatch();
@@ -17,6 +17,13 @@ export default function HomeScreen() {
         if (books?.length > 0) return
         dispatch(listBooks())
     }, [])
+
+    useEffect(() => {
+        const h = window.location.hash
+        if (h.length > 0) {
+            history.push(h.split('#')[1])
+        }
+    }, [window.location.hash])
 
     return (
         <div className='home-screen'>
