@@ -2,7 +2,7 @@
 
 This is a MERN stack practice shopping cart project.
 
-Here is the link to [my homepage](http://143.110.253.117/).
+Here is the link to [my homepage](http://booksrental.me/).
 
 ## Features
 
