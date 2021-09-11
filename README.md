@@ -27,6 +27,8 @@ For data storage, open-source [mongodb](https://docs.mongodb.com/manual/) is cho
 
 ### Frontend
 
+Host frontend assets with [nginx](http://nginx.org/en/docs/) web server, which also serves as reverse proxy to backend.
+
 Frontend is built with [React](https://reactjs.org/), which provides convenient component-based structure to construct user interface.
 
 [React-Redux](https://react-redux.js.org/) provides an organized way to manage my React state, preventing to suffer from scattered state.
