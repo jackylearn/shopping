@@ -22,7 +22,7 @@ export default function Navbar({ loginButton, registerButton, showCartPreview, s
 
     return (
         <nav id="navbar">
-            <Link to="/" id="logo">BookRental</Link>
+            <Link to="/" id="logo">BooksRental</Link>
             <div id="nav-links">
                 {loginStatus
                     ?
