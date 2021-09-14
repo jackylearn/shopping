@@ -10,7 +10,6 @@ const authRoutes = require('./routes/authRoutes.js')
 const userRoutes = require('./routes/userRoutes.js')
 
 const auth = require('./controller/auth.js')
-const { flash } = require('express-flash-message')
 
 const db = require('./config/db_connection.js')
 app.use(express.json()) // for other data fetch route
@@ -19,7 +18,6 @@ app.use(express.urlencoded({ extended: false })) // for form from post request
 app.use((req, res, next) => { console.log(req.url); next() })
 
 require('./controller/configSession.js')(app)
-app.use(flash())
 auth()
 
 db.connect()

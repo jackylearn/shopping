@@ -2,6 +2,7 @@ const session = require('express-session')
 const passport = require('passport')
 const redis = require('redis')
 const redisStore = require('connect-redis')(session)
+const { flash } = require('express-flash-message')
 
 module.exports = (app) => {
 
@@ -18,4 +19,5 @@ module.exports = (app) => {
     }))
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use(flash())
 }
