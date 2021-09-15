@@ -5,7 +5,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     volumes:
-      - ./client/build:/client
+      - client:/client
     ports:
       - 80:80
     networks:
@@ -34,6 +34,7 @@ services:
       - CLIENT_URL=http://192.168.99.100:80/#
     depends_on:
       - db
+      - session
 
   db:
     image: mongo
@@ -46,6 +47,15 @@ services:
       - mern-network
     command: ["mongod", "--auth"]
 
+  session:
+    image: redis
+    volumes:
+      - redis:/data/session
+    ports:
+      - 6379:6379
+    networks:
+      - mern-network
+
 networks:
   mern-network:
     driver: bridge
@@ -55,3 +65,4 @@ volumes:
     driver: local
   server:
   client:
+  redis:
