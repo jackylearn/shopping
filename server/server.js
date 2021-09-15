@@ -1,8 +1,6 @@
 require('dotenv').config()
 const express = require('express');
 const app = express();
-const path = require('path');
-
 
 const bookRoutes = require('./routes/bookRoutes.js');
 const paymentRoutes = require('./routes/paymentRoutes.js')
@@ -17,7 +15,7 @@ app.use(express.urlencoded({ extended: false })) // for form from post request
 
 app.use((req, res, next) => { console.log(req.url); next() })
 
-require('./controller/configSession.js')(app)
+require('./config/configSession.js')(app)
 auth()
 
 db.connect()
